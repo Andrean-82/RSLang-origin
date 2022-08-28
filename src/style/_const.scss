@@ -1,20 +1,25 @@
 //font
-$size-h1:35px;
-$size-p:16px;
+$size-h1: 35px;
+$size-p: 16px;
 
 //text color
-$color-h1:#1010dd;
-$color-p:#1010dd;
+$color-h1: #000000;
+$color-correct-answer: #078528;
+$color-incorrect-answer: #ff1919;
+
+
+
 
 // wigth
-$wigth-wrapper:75rem;
+$wigth-wrapper: 75rem;
 
 // background-color
-$background-dark: #211F20;
-$background-footer:#ddf80d; //Maxim
-$background-header:#1fe768; //Maria
-$background-main: #413d93; //Anatoliy
+$color-header: #58dba6;
+$background-main: #ffffff;
+$color-active: #ffbb33;
+$color-little-window: #fffec2;
+$color-little-window-1: #595ED6;
 
 //fill
-$background-fill: url();
+$background-fill: url('../img/png/panda_main.png');
 $background-logo: url('./src/img/png/pngwing.com.png');

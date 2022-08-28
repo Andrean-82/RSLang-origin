@@ -1,24 +1,20 @@
 @import './style/dictionary';
-@import './style/footer';
-@import './style/game№1';
-@import './style/game№2';
+@import './style/footer.scss';
+//@import './style/game№1.scss';
+//@import './style/game№2';
 @import './style/header';
 @import './style/main';
 @import './style/stats';
 @import './style/const';
-@import './games/gameSprint';
+@import './style/navigation';
+@import './style/global';
+@import './style/fonts';
+@import './style/team';
+@import './style/autorization';
+
+
 
 *{
   margin:0;
   padding:0;
-}
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url('./assets/png/bambuk_1.jpg');
-  padding-top: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
 }
