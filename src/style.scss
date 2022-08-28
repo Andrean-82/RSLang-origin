@@ -1,12 +1,10 @@
 @import './style/dictionary';
 @import './style/footer';
-@import './style/game№1';
-@import './style/game№2';
 @import './style/header';
 @import './style/main';
 @import './style/stats';
 @import './style/const';
-@import './games/gameSprint';
+@import './games/sprint/gameSprint';
 
 *{
   margin:0;
