@@ -5,18 +5,3 @@
 @import './style/stats';
 @import './style/const';
 @import './games/sprint/gameSprint';
-
-*{
-  margin:0;
-  padding:0;
-}
-body{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: url('./assets/png/bambuk_1.jpg');
-  padding-top: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
-}
