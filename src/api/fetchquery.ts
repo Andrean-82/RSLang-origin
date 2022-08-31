@@ -1,14 +1,11 @@
-const urlAdress = 'https://rs-lang-english.herokuapp.com';
-const urlAdressWords = `${urlAdress}/words`;
-const urlAdressUser = `${urlAdress}/users`;
-//
-export const getWords = async () => {
-    const data = await fetch(`${urlAdressWords}?group=${0}&page=${3}`);
-    const data_1 = await data.json();
-    console.log(data_1);
-    return data_1;
-};
-//
+export const urlAdress = 'https://rs-lang-english.herokuapp.com';
+export const urlAdressWords = `${urlAdress}/words`;
+export const urlAdressUser = `${urlAdress}/users`;
+
+
+
+
+
 export const createUser = (obj: object) => {
     fetch(`${urlAdressUser}`, {
         method: 'POST',
