@@ -3,7 +3,6 @@ import { addPageTitle } from '../components/createTitle';
 import Page from './page';
 
 openForm();
-// changeOnSignInForm();
 
 class Main extends Page {
     constructor() {
