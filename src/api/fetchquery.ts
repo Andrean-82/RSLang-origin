@@ -1,11 +1,6 @@
 export const urlAdress = 'https://rs-lang-english.herokuapp.com';
 export const urlAdressWords = `${urlAdress}/words`;
 export const urlAdressUser = `${urlAdress}/users`;
-
-
-
-
-
 export const createUser = (obj: object) => {
     fetch(`${urlAdressUser}`, {
         method: 'POST',
@@ -13,7 +8,6 @@ export const createUser = (obj: object) => {
         body: JSON.stringify(obj),
     });
 };
-
 // const user = {
 //     name: 'Anatoliy',
 //     email: 'Andrean-82@mail.ru',

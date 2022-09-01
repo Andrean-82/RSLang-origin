@@ -14,4 +14,4 @@ export type Word = {
     textExampleTranslate: string;
     textMeaningTranslate: string;
     wordTranslate: string;
-  };
+};
