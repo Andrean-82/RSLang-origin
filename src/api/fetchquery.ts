@@ -1,7 +1,7 @@
 export const urlAdress = 'https://rs-lang-english.herokuapp.com';
 export const urlAdressWords = `${urlAdress}/words`;
 export const urlAdressUser = `${urlAdress}/users`;
-//
+
 export const getWords = async (group: number, page: number) => {
     const data = await fetch(`${urlAdressWords}?group=${group}&page=${page}`);
     const data_1 = await data.json();
@@ -14,7 +14,7 @@ export const getWord = async (id: string) => {
     console.log(data_1);
     return data_1;
 };
-//
+
 export const createUser = (obj: object) => {
     fetch(`${urlAdressUser}`, {
         method: 'POST',
@@ -22,7 +22,6 @@ export const createUser = (obj: object) => {
         body: JSON.stringify(obj),
     });
 };
-
 // const user = {
 //     name: 'Anatoliy',
 //     email: 'Andrean-82@mail.ru',
