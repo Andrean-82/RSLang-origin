@@ -20,6 +20,7 @@
         "no-console": 0,
         "class-methods-use-this": "off",
         "@typescript-eslint/no-explicit-any": 2,
-        "prettier/prettier": "off"
+        "prettier/prettier": "off",
+        "@typescript-eslint/no-unused-vars" : "off" //добавил для того, чтобы не ругался на переменные, которые нигде не вызываются.
     }
 }

@@ -53,12 +53,12 @@ class Dictionary extends Page {
         <div id="content"></div>
 
         <div class="groupSelector">
-          <div class="groupCircle" data-group="0">1</div>
-          <div class="groupCircle" data-group="1">2</div>
-          <div class="groupCircle" data-group="2">3</div>
-          <div class="groupCircle" data-group="3">4</div>
-          <div class="groupCircle" data-group="4">5</div>
-          <div class="groupCircle" data-group="5">6</div>
+          <img class="groupCircle" data-group="0" src="../src/assets/main_pandas/3.png" width="40" >
+          <img class="groupCircle" data-group="1" src="../src/assets/main_pandas/7.png" width="40" >
+          <img class="groupCircle" data-group="2" src="../src/assets/main_pandas/9.png" width="40" >
+          <img class="groupCircle" data-group="3" src="../src/assets/main_pandas/13.png" width="40" >
+          <img class="groupCircle" data-group="4" src="../src/assets/main_pandas/14.png" width="40" >
+          <img class="groupCircle" data-group="5" src="../src/assets/main_pandas/15.png" width="40" >
         </div>
 
         <div class="onlyDifficultToggle ${isHidden}">
