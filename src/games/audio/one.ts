@@ -34,8 +34,6 @@ export async function complecteElementAudioWord() {
     }
     numberArray = copySorted(arrayAudioIndex);
     const indexForAudio = numberArray[0];
-    // console.log(arrayAudioIndex);
-    // console.log(numberArray);
     audioPlayLink(words[indexForAudio].audio);
     keyButton(indexForAudio, arrayAudioIndex);
 }

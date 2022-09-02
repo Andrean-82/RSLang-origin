@@ -1,5 +1,9 @@
+import { openForm } from '../autorization/autorizationWindow';
 import { addPageTitle } from '../components/createTitle';
 import Page from './page';
+
+openForm();
+
 class Main extends Page {
     constructor() {
         super('Main');
