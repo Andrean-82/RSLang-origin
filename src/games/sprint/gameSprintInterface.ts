@@ -1,9 +1,9 @@
 import { createElement } from '../../components/createElement';
-import { clickButton } from './clickEventListener';
+import { clickButtonNoYes } from './clickEventListnerNoYes';
 import { getWordsinGemeSprint } from './gemeSprintGetWords';
 
 export async function sprintGame(arrayObject: []) {
-    const closeBtn = <HTMLElement>document.getElementById('close_btn');
+    const closeBtn = <HTMLElement>document.querySelector('.close_btn');
     closeBtn.classList.toggle('close_btn_sprint_interfece');
     const header = createElement('div', closeBtn, ['header_game_sprint'], { ['id']: 'header_game_sprint' });
     const headerDiv_1 = createElement('div', header, ['header_div_1'], { ['id']: 'header_div_1' });
@@ -34,6 +34,6 @@ export async function sprintGame(arrayObject: []) {
     createElement('button', footerDiv_2, ['button_true'], {
         ['id']: 'button_true',
     }).textContent = 'YES';
-    clickButton();
+    clickButtonNoYes();
     getWordsinGemeSprint(arrayObject);
 }

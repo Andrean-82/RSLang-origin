@@ -5,7 +5,7 @@ import { gameSprintAddYN } from './gameSprintCreateDivYN';
 
 export function sprintGameResult() {
     const count = sessionStorage.getItem('count');
-    const closeBtn = <HTMLElement>document.getElementById('close_btn');
+    const closeBtn = <HTMLElement>document.querySelector('.close_btn');
     closeBtn.innerHTML = '';
     closeBtn.classList.toggle('wrapper_game_sptint_result');
     const blokForH3 = createElement('div', closeBtn, ['blok_for_H3'], { ['id']: 'blok_for_H3' });

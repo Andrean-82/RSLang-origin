@@ -1,6 +1,6 @@
-const urlAdress = 'https://rs-lang-english.herokuapp.com';
-const urlAdressWords = `${urlAdress}/words`;
-const urlAdressUser = `${urlAdress}/users`;
+export const urlAdress = 'https://rs-lang-english.herokuapp.com';
+export const urlAdressWords = `${urlAdress}/words`;
+export const urlAdressUser = `${urlAdress}/users`;
 //
 export const getWords = async (group: number, page: number) => {
     const data = await fetch(`${urlAdressWords}?group=${group}&page=${page}`);

@@ -1,7 +1,29 @@
 @import './style/dictionary';
+//<<<<<<< HEAD
 @import './style/footer';
+//=======
+//@import './style/footer.scss';
+//@import './style/game№1.scss';
+//@import './style/game№2';
+//>>>>>>> develop
 @import './style/header';
 @import './style/main';
 @import './style/stats';
 @import './style/const';
+//<<<<<<< HEAD
 @import './games/sprint/gameSprint';
+@import './games/audio/gameAudio';
+//=======
+@import './style/navigation';
+@import './style/global';
+@import './style/fonts';
+@import './style/team';
+@import './style/autorization';
+
+
+
+*{
+  margin:0;
+  padding:0;
+}
+//>>>>>>> develop

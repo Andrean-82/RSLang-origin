@@ -1,6 +1,22 @@
-.logo{
-    width: 90%;
-    // background-image: $background-logo;
-    // background-color: $background-main;
-    background-color: rgb(59, 111, 225);
+header {
+    display: flex;
+    min-height: 5vh;
+    position: relative;
+    background:#ffbb33;
+    #logged-user-container {
+        display: flex;
+        position: absolute;
+        border: none;
+        right: 0;
+      }
+    #page-title {
+        position: relative;
+        font-size: 32px;
+        text-transform: uppercase;
+        line-height: 40px;
+        color: black;
+        margin-left: 570px;
+        font-family: 'DynaPuff', cursive;
+      
+      }
 }

@@ -1,11 +1,15 @@
-// import { wrapperTime } from './timeDown';
-import { generateArray } from './gameSprintArrayforGetWord';
+// import { hourMeterParagraf } from '../components-game/constants';
+import { generateArray } from '../components-game/gameArrayforGetWord';
 import { sprintGameResult } from './gameSprintResult';
+// import { wrapperTime } from '../components-game/timeDown';
 
-// const time = wrapperTime();
+// const hourMeter = hourMeterParagraf();
+// const time = wrapperTime(59, hourMeter);
 // export const interval = setInterval(time, 1000);
-const arrayPosEng = generateArray(); //.sort(() => Math.random() - 0.5);
-const arrayPosTranslete = generateArray(); //.sort(() => Math.random() - 0.5);
+
+const lengthArrayIndex = 20;
+const arrayPosEng = generateArray(lengthArrayIndex); //.sort(() => Math.random() - 0.5);
+const arrayPosTranslete = generateArray(lengthArrayIndex); //.sort(() => Math.random() - 0.5);
 const arrayMod: Array<[number, number]> = [];
 for (let i = 0; i < arrayPosEng.length; i++) {
     arrayMod.push([arrayPosEng[i], arrayPosTranslete[i]]);

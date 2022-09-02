@@ -13,7 +13,9 @@
 //   background-repeat: no-repeat;
 //   min-height: 100vh;
 // }
-
+.container{
+  background: url('./assets/png/bambuk_1.jpg');
+}
 
 #wrapper_sprint_game{
   padding-top: 20px;
@@ -184,6 +186,9 @@
         background-color: $background-gameSprint;
         box-shadow: 0 0 10px rgba(0,0,0,0.7);        
       }
+      .tbody_result{
+        min-width: 300px;
+      }
       .td_wrapper_true{
         display: grid;
         grid-template-columns: 0.5fr;
@@ -273,7 +278,7 @@
     align-items: center;
     width: 5rem;
     height: 5rem;
-    background-color: rgb(23, 140, 58);
+    background-color: $color-active;
     border-radius: 100px;
     font-size: 3rem;
     font-weight: bold;
