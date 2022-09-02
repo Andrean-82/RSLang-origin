@@ -44,9 +44,10 @@ class Dictionary extends Page {
       </div>
 
       <div class="pageSelector">
-        <div data-pageNav="prev"><</div>
+      <img data-pageNav="prev" src="../src/assets/png/arrow-left.png" >
         <div id="currentPage">${this.currentPage + 1}</div>
-        <div data-pageNav="next">></div>
+        <img data-pageNav="next" src="../src/assets/png/arrow-right.png" >
+        
       </div>
 
       <div class="contentContainer">
