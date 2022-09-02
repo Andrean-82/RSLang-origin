@@ -1,0 +1,25 @@
+body {
+    background-color: $background-main;
+    font-family: "Rubik";
+    margin: 0;
+    padding: 0;
+    position: relative;
+    background: url(../src/assets/svg/footer_wave.svg) no-repeat;
+    background-position: bottom;
+
+}
+
+.container {
+    display: flex;
+    min-height: 90vh;
+    background: url(../src/assets/svg/2.svg) no-repeat;
+}
+
+#app {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 50px;
+font-size: 20px;
+font-family: "Rubik";
+}

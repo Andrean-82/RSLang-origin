@@ -1,0 +1,22 @@
+header {
+    display: flex;
+    min-height: 5vh;
+    position: relative;
+    background:#ffbb33;
+    #logged-user-container {
+        display: flex;
+        position: absolute;
+        border: none;
+        right: 0;
+      }
+    #page-title {
+        position: relative;
+        font-size: 32px;
+        text-transform: uppercase;
+        line-height: 40px;
+        color: black;
+        margin-left: 570px;
+        font-family: 'DynaPuff', cursive;
+      
+      }
+}

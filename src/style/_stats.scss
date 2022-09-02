@@ -1,0 +1,83 @@
+#statistic-container{
+    display: flex;
+    flex-direction: column;
+    row-gap: 30px;
+    margin: 0 auto;
+    align-items: center;
+    text-transform: uppercase;
+    font-size: 22px;
+    text-align: center;
+    margin-top: 130px;
+    h3, h2{
+        flex: 100%;
+        margin: 10px 0;
+    }
+    h2{
+        background-color: #7b7ff1;
+        border-radius: 10px;
+        padding: 5px;
+    }
+
+    #statistic-for-this-day{
+        background: white;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        #words-statistic, #game-statistic{
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            p{
+                padding: 0 10px;
+            }
+        }
+        h2::after, h2::before{
+            font-family: "Material Icons";
+            color: rgb(255, 162, 0);
+            content: '\e885';   
+        }
+    }
+}
+
+#statistic-for-this-day{
+    h2{
+        flex: 1 0 100%;
+    }
+    #words-statistic, #game-statistic{
+        display: flex;
+        flex-wrap: wrap;
+    }
+}
+
+#day-stat-container{
+    box-shadow: 0 0 10px 5px rgba(221, 221, 221, 1);
+    display: flex;
+    flex-direction: column;
+    column-gap: 30px;
+}
+
+#game-stat-container{
+    display: flex;
+    column-gap: 50px;
+    justify-content: center;
+}
+
+#new-words-per-day{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    background: white;
+    border-radius: 10px;
+}
+#sprint-stat-container, #audio-challenge-stat-container, #words-stat-container{
+    box-shadow: 1px 3px 4px rgb(0 0 0 / 10%);
+    border-radius: 10px;
+    padding: 10px;
+
+}
+.inactive{
+    display: none;
+}
+.active{
+    display: block;
+}

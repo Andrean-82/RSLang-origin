@@ -1,0 +1,115 @@
+.mainPageContainer{
+    width: 600px;
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    margin: 110px 0 30px 0;
+    flex-wrap: wrap;
+    justify-content: center;
+    column-gap: 30px;
+    row-gap: 45px;
+  }
+  
+  .teamCard{
+    height: 460px;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 5px;
+    box-shadow: 1px 3px 4px rgb(0 0 0 / 10%);
+    background-color: #f9f8fa;
+  }
+  
+  .photo{
+    width: 300px;
+    height: 340px;
+    margin-bottom: 10px;
+  }
+  
+  .git{
+    height: 18px;
+    width: 18px;
+  }
+  
+  .teamDescription{
+    margin-top: 10px;
+    text-align: center;
+    vertical-align: middle;
+
+  }
+  
+  .tittle_text {
+    background-color: #ffb108;
+    border-radius: 10px;
+    padding: 10px 20px;
+    width: fit-content;
+    letter-spacing: 0.05rem;
+    margin: 1rem 0;
+    font-size: 30px;
+    &:hover {
+      box-shadow: 1px 3px 4px rgb(0 0 0 / 20%);
+      transform: scale(1.02);
+  }
+  }
+  .main_text {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+  
+  .gamesPageContainer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 600px;
+    margin-top: 130px;
+}
+
+
+.gameCard {
+    width: 200px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+    box-shadow: 1px 3px 4px rgb(0 0 0 / 10%);
+    background-color: #f9f8fa;
+    padding: 30px;
+
+
+    img {
+        width: 50px;
+        height: 50px;
+        margin: 10px;
+    }
+
+    div:last-child {
+        margin-top: 15px;
+    }
+}
+
+.gameDescription {
+    margin-top: 5px;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.gameBackBtn{
+    width: 140px;
+    height: 35px;
+    margin-top: 30px;
+    background-color: coral;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+  
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
