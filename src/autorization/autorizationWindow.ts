@@ -9,6 +9,7 @@ const overlay = createElement('div', document.body, ['overlay']);
 const layout = createElement('div', document.body, ['layout']);
 let isOpenForm = false;
 export let token: string;
+export let personID: string;
 
 export const openForm = () => {
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
@@ -71,10 +72,10 @@ export const authenticator = async (email: string, password: string) => {
         .then((response) => response.json())
         .then((data) => {
             console.log('data: ', data);
-            //const div = layout.childNodes[1].childNodes[19] as HTMLElement;
             localStorage.setItem(`${data.id}`, `${data.email}`);
             openRegFormBtn.textContent = localStorage.getItem(`${data.id}`);
-            //div.textContent = localStorage.getItem(`${data.id}`);
+            personID = data.id;
+            console.log('data.id', personID, data.id);
 
             for (let i = 0; i < localStorage.length; i++) {
                 console.log(localStorage.getItem(`${localStorage.key(i)}`));
@@ -138,12 +139,12 @@ export const checkIn = async () => {
             infoDiv.innerText = `The user does not exists: '${email}'`;
         }
     });
-    //const div = layout.childNodes[1].childNodes[19] as HTMLElement;
     if (email.match(emailPattern) && infoDiv.textContent === '') {
         openRegFormBtn.textContent = email;
     }
-    //div.textContent = email;
     token = content.token;
+    personID = content.userId;
     console.log('token: ', token);
     console.log('content checkIn: ', content);
+    console.log('content.userId: ', content.userId, personID);
 };
