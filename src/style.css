@@ -3,7 +3,7 @@
   background-color: #3b6fe1;
 }
 
-s#wrapper_sprint_game {
+#wrapper_sprint_game {
   padding-top: 20px;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -486,27 +486,5 @@ s#wrapper_sprint_game {
 .form_result_word {
   display: -ms-grid;
   display: grid;
-}
-
-* {
-  margin: 0;
-  padding: 0;
-}
-
-body {
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  background: url("./assets/png/bambuk_1.jpg");
-  padding-top: 10px;
-  background-size: cover;
-  background-repeat: no-repeat;
-  min-height: 100vh;
 }
 /*# sourceMappingURL=style.css.map */
