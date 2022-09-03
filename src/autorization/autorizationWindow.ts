@@ -1,4 +1,6 @@
 import { createElement } from '../components/createElement';
+import { hideStatNav, isUserLoggedIn, showStatNav } from '../components/loginUtils';
+import Dictionary from '../pages/dictionary';
 import { registrationLayout } from './autorizationLayout';
 
 const form = document.querySelector('#logged-user-container') as HTMLElement;
@@ -13,6 +15,11 @@ export let personID: string;
 
 export const openForm = () => {
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
+        if (isUserLoggedIn()){
+            hideStatNav(); //убираю статистику иконку
+            localStorage.removeItem('user');//очищает локал сторидж
+            new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
+        }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
         } else if (!isOpenForm) {
@@ -43,9 +50,11 @@ export const openForm = () => {
                 sendData();
             });
 
-            const signIn = signInBtn.addEventListener('click', () => {
+            const signIn = signInBtn.addEventListener('click', async () => { //чекин - асинхр функция добавили асинк чтобы работал checkIn()
                 console.log('signIn');
-                checkIn();
+                await checkIn(); // добавила проверку
+                showStatNav();//показывает стату
+                new Dictionary().openPage();//перерендер
             });
 
             const closeForm = closeFormBtn.addEventListener('click', () => {
@@ -73,6 +82,7 @@ export const authenticator = async (email: string, password: string) => {
         .then((data) => {
             console.log('data: ', data);
             localStorage.setItem(`${data.id}`, `${data.email}`);
+            localStorage.setItem('user', JSON.stringify(data));//сохранение всех данных юзера в локал сторидж
             openRegFormBtn.textContent = localStorage.getItem(`${data.id}`);
             personID = data.id;
             console.log('data.id', personID, data.id);
@@ -147,4 +157,5 @@ export const checkIn = async () => {
     console.log('token: ', token);
     console.log('content checkIn: ', content);
     console.log('content.userId: ', content.userId, personID);
+    localStorage.setItem('user', JSON.stringify(content));//сохранение всех данных юзера в локал сторидж
 };

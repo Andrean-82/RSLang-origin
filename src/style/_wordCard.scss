@@ -57,11 +57,51 @@
   
  
   
+  .cardIndicators{
+    width: 150px;
+    position: absolute;
+    right: 0;
+    top: 0;
+    display: flex;
+    justify-content: space-around;
+  
+    span:nth-child(1)::first-letter {
+      color: green;
+  }
+  }
+
+  .difficult {
+    border: 2px solid rgb(255, 223, 45);
+    box-shadow: 0 0 30px #ffbb33;
+    .difficultIcon{
+      color: #ffbb33;
+    }
+  }
+  
+  .learnt {
+    border: 3px solid green;
+    box-shadow: 0 0 30px green;
+  
+    .learntIcon{
+      color: green;
+    }
+  }
+  
   .material-icons{
     cursor: pointer;
   }
   
+  .learntIcon{
+    &:hover {
+      color: green;
+    }
+  }
   
+  .difficultIcon{
+    &:hover {
+      color: #ffbb33;
+    }
+  }
   
   .hidden{
     display: none;
