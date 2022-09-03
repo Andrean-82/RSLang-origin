@@ -1,12 +1,22 @@
 import { createElement } from '../../components/createElement';
-import { picture } from '../components-game/constants';
+import { wsg } from '../components-game/constants';
 
 export const imagAnswer = (boolenAnswer: string) => {
-    const divForPic = picture();
+    const divForPic = wsg();
     if (boolenAnswer === 'false') {
-        createElement('img', divForPic, ['pic'], { ['scr']: './assets/png/angry-panda.webp', ['alt']: 'Angry panda', ['width']: '100%', ['height']: '100%' });
+        divForPic.innerHTML = '';
+        const img = createElement('img', divForPic, ['img_panda_audio'], {
+            ['id']: 'img_panda_audio',
+            ['src']: '../assets/png/angry-panda.png',
+            ['alt']: 'Angry',
+        });
     }
     if (boolenAnswer === 'true') {
-        createElement('img', divForPic, ['pic'], { ['scr']: './assets/png/angry-panda.webp', ['alt']: 'Angry panda', ['width']: '100%', ['height']: '100%' });
+        divForPic.innerHTML = '';
+        const img = createElement('img', divForPic, ['img_panda_audio'], {
+            ['id']: 'img_panda_audio',
+            ['src']: '../assets/png/free-sticker-panda-7603475.png',
+            ['alt']: 'Like',
+        });
     }
 };

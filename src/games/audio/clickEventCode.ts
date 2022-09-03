@@ -1,72 +1,48 @@
-// import { createElement } from '../../components/createElement';
-import { picture } from '../components-game/constants';
-import { complecteElementAudioWord } from './one';
-
-// (document.querySelector('.audio_challenge') as HTMLElement).onclick = async function (event) {
+import { wrapper } from './gameWrapper';
 
 export const keyButton = (one: number, numberArray: Array<number>) => {
     document.addEventListener('keyup', async function (event) {
-        if (one === numberArray[0] && event.code === 'Digit1') {
-            console.log('one');
-            numberArray = [];
-            complecteElementAudioWord();
+        if (event.code === 'Space') {
+            console.log(`this button 1 ${event.code}`);
+            wrapper('false');
+        }
+        if ('Digit1' && one === numberArray[0]) {
+            console.log(one);
+            console.log(numberArray[0]);
+            wrapper('true');
         } else {
             if (one === numberArray[0] && event.code != 'Digit1') {
-                console.log('false');
-                numberArray = [];
-                complecteElementAudioWord();
+                wrapper('false');
             }
         }
         if (one === numberArray[1] && event.code === 'Digit2') {
-            console.log('two');
-            numberArray = [];
-            complecteElementAudioWord();
+            wrapper('true');
         } else {
             if (one === numberArray[1] && event.code != 'Digit2') {
-                console.log('false');
-                numberArray = [];
-                complecteElementAudioWord();
+                wrapper('false');
             }
         }
         if (one === numberArray[2] && event.code === 'Digit3') {
-            console.log('three');
-            numberArray = [];
-            complecteElementAudioWord();
+            wrapper('true');
         } else {
             if (one === numberArray[2] && event.code != 'Digit3') {
-                console.log('false');
-                numberArray = [];
-                complecteElementAudioWord();
+                wrapper('false');
             }
         }
         if (one === numberArray[3] && event.code === 'Digit4') {
-            console.log('four');
-            numberArray = [];
-            complecteElementAudioWord();
+            wrapper('true');
         } else {
             if (one === numberArray[3] && event.code != 'Digit4') {
-                console.log('false');
-                numberArray = [];
-                complecteElementAudioWord();
+                wrapper('false');
             }
         }
         if (one === numberArray[4] && event.code === 'Digit5') {
-            console.log('five');
-            numberArray = [];
-            complecteElementAudioWord();
+            wrapper('true');
         } else {
             if (one === numberArray[4] && event.code != 'Digit5') {
-                console.log('false');
-                numberArray = [];
-                complecteElementAudioWord();
+                wrapper('false');
             }
         }
-        if (event.code == 'Space') {
-            const img = picture();
-            img.innerHTML = '';
-            numberArray = [];
-            //img.classList.toggle('errorAnswer');
-            complecteElementAudioWord();
-        }
+        numberArray = [];
     });
 };
