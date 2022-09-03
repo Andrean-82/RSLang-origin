@@ -5,6 +5,7 @@ import Team from '../pages/team';
 import Games from '../pages/games';
 import Dictionary from '../pages/dictionary';
 import Statistics from '../pages/stats';
+import { loadUser } from '../components/loginUtils';
 type Routes = {
     main: Main;
     team: Team;
@@ -19,6 +20,7 @@ class Router {
     constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics; }) {
         this.routes = routes;
         this.currentPage = 'main';
+        loadUser();
         this.routes.main.openPage();
     }
     init(): void {

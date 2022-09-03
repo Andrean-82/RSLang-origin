@@ -7,7 +7,7 @@ export const getWords = async (group: number, page: number) => {
     const data_1 = await data.json();
     return data_1;
 };
-//
+
 export const getWord = async (id: string) => {
     const data = await fetch(`${urlAdressWords}/${id}`);
     const data_1 = await data.json();

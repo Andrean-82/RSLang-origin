@@ -58,7 +58,7 @@
     margin-bottom: 10px;
     font-size: 32px;
     background: rgba(255, 255, 255, 0.1215686275);
-    padding: 5px;
+    padding: 10px;
     
   }
   
@@ -102,11 +102,6 @@
     border: 2px solid rgb(240, 199, 67)
   }
   
-  .disabled{
-    pointer-events: none;
-    filter: grayscale(1);
-  }
-  
   [data-group="0"] {
     background-color: #7B7FF1;
   }
@@ -131,4 +126,52 @@
     background-color: #2A1D61;
   }
   
+  .disabled{
+    pointer-events: none;
+    filter: grayscale(1);
+  }
   
+  .completedIcon{
+    position: absolute;
+    top: 0px;
+    right: -120px;
+    height: 65px;
+    width: 65px;
+    display: none;
+  }
+  
+  .onlyDifficultToggle{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+  
+    position: absolute;
+    top: -100px;
+    left: 50px;
+  
+    span{
+      font-size: 44px;
+      &:hover {
+        color: #ffbb33;
+      }
+    }
+  
+    cursor: pointer;
+  }
+  
+  .difficultPlaceholder{
+    width: 800px;
+    padding-top: 50px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 22px;
+  }
+  
+  .difIcon{
+    display: flex;
+    justify-content: center;
+  }
+
+  .material-icons {
+    cursor: pointer;
+  }
