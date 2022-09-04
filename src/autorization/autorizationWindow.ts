@@ -9,12 +9,36 @@ openRegFormBtn.innerText = 'SIGN IN';
 
 const overlay = createElement('div', document.body, ['overlay']);
 const layout = createElement('div', document.body, ['layout']);
+
+const divForEmail = document.createElement('div');
+divForEmail.className = 'email-div';
+
 let isOpenForm = false;
 export let token: string;
 export let personID: string;
 
+
 export const openForm = () => {
+    console.log('1: logOut ', localStorage.getItem('user'));
+    const a = localStorage.getItem('user');
+    if( a?.includes('"logOut":"false"') && a?.includes('"email"')) {
+        openRegFormBtn.classList.add('test');
+        openRegFormBtn.textContent = 'LOG OUT';
+
+        const newstr = a.split('');
+        const one = newstr.splice(508);
+        const two = one.splice(-19);
+        const result = one.join('');
+        divForEmail.textContent = result;
+        form.before(divForEmail);
+    }
+    // localStorage.clear();
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
+        for(let i = 0; i < localStorage.length; i++) {
+            console.log('//////////////////////////////////////////////');
+            console.log('localStorage.key ', localStorage.key(i), 'localStorage.value ', localStorage.getItem(`${localStorage.key(i)}`));
+            console.log('//////////////////////////////////////////////');
+        }
         if (isUserLoggedIn()){
             hideStatNav(); //убираю статистику иконку
             localStorage.removeItem('user');//очищает локал сторидж
@@ -22,6 +46,13 @@ export const openForm = () => {
         }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
+            openRegFormBtn.classList.remove('test');
+            if( a?.includes('"logOut":"false"')) {
+                const newstr = a.replace(/false/i, 'true');
+                divForEmail.textContent = '';
+                localStorage.setItem('user', newstr);
+            }
+            console.log('2: logOut ', localStorage);
         } else if (!isOpenForm) {
             overlay.style.display = 'block';
             layout.style.display = 'block';
@@ -48,6 +79,11 @@ export const openForm = () => {
             const logIn = logInBtn.addEventListener('click', () => {
                 console.log('logIn');
                 sendData();
+                setTimeout(() => {
+                    if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
+                        openRegFormBtn.classList.add('test');
+                    }
+                }, 300);
             });
 
             const signIn = signInBtn.addEventListener('click', async () => { //чекин - асинхр функция добавили асинк чтобы работал checkIn()
@@ -55,6 +91,11 @@ export const openForm = () => {
                 await checkIn(); // добавила проверку
                 showStatNav();//показывает стату
                 new Dictionary().openPage();//перерендер
+                setTimeout(() => {
+                    if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
+                        openRegFormBtn.classList.add('test');
+                    }
+                }, 300);
             });
 
             const closeForm = closeFormBtn.addEventListener('click', () => {
@@ -80,16 +121,25 @@ export const authenticator = async (email: string, password: string) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('data: ', data);
-            localStorage.setItem(`${data.id}`, `${data.email}`);
+            infoDiv.innerText = '';
+            // console.log('data: ', data);
+            data.logOut = 'false';
+            // localStorage.setItem(`${data.id}`, `${data.email}`);
             localStorage.setItem('user', JSON.stringify(data));//сохранение всех данных юзера в локал сторидж
             openRegFormBtn.textContent = localStorage.getItem(`${data.id}`);
-            personID = data.id;
-            console.log('data.id', personID, data.id);
 
-            for (let i = 0; i < localStorage.length; i++) {
-                console.log(localStorage.getItem(`${localStorage.key(i)}`));
-            }
+            // const divForEmail = document.createElement('div');
+            // divForEmail.className = 'email-div';
+            divForEmail.textContent = localStorage.getItem(`${data.id}`);
+            form.before(divForEmail);
+            openRegFormBtn.textContent = 'LOG OUT';
+
+            personID = data.id;
+            // console.log('data.id', personID, data.id);
+
+            // for (let i = 0; i < localStorage.length; i++) {
+            //     console.log(localStorage.getItem(`${localStorage.key(i)}`));
+            // }
         })
         .catch((e) => (infoDiv.innerText = `This email address: '${email}' is already being used!\n\nTry again, but click on "SIGN IN" button.`))
         .finally(async () => {
@@ -101,11 +151,25 @@ export const authenticator = async (email: string, password: string) => {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
             const content = await rawResponse.json();
             token = content.token;
-            console.log('token: ', token);
-            console.log('local storage: ', localStorage);
+            //////////////////////////////// В случае успешной регистрации - выводит сообщение и через секунду окно закрывается.
+            setTimeout(() => {
+                if (infoDiv.textContent === '') {
+                    infoDiv.textContent = `Welcome ${email}!`;
+                }
+            }, 1000);
+
+            setTimeout(() => {
+                if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+                    overlay.style.display = 'none';
+                    layout.style.display = 'none';
+                    isOpenForm = false;
+                }
+            }, 2000);
+            ///////////////////////////////
+            // console.log('token: ', token);
+            // console.log('local storage: ', localStorage);
         });
 };
 
@@ -121,6 +185,11 @@ export const sendData = () => {
         authenticator(email, password);
     } else {
         infoDiv.innerText = 'Incorrect login or password..';
+        ////////////////////////////////
+        // overlay.style.display = 'block';
+        // layout.style.display = 'block';
+        // isOpenForm = true;
+        ///////////////////////////////
     }
 };
 
@@ -150,12 +219,34 @@ export const checkIn = async () => {
         }
     });
     if (email.match(emailPattern) && infoDiv.textContent === '') {
-        openRegFormBtn.textContent = email;
+        // const divForEmail = document.createElement('div');
+        // divForEmail.className = 'email-div';
+        divForEmail.textContent = email;
+        form.before(divForEmail);
+        openRegFormBtn.textContent = 'LOG OUT';
     }
     token = content.token;
     personID = content.userId;
-    console.log('token: ', token);
+    //////////////////////////////// В случае успешной регистрации - выводит сообщение и через секунду окно закрывается.
+    setTimeout(() => {
+        if (infoDiv.textContent === '') {
+            infoDiv.textContent = `Welcome ${email}!`;
+        }
+    }, 1000);
+
+    setTimeout(() => {
+        if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+            overlay.style.display = 'none';
+            layout.style.display = 'none';
+            isOpenForm = false;
+        }
+    }, 2000);
+    ///////////////////////////////
+    // console.log('token: ', token);
+    content.email = email;
+    content.logOut = 'false';
     console.log('content checkIn: ', content);
-    console.log('content.userId: ', content.userId, personID);
+    console.log('3: logOut ', localStorage);
+    // console.log('content.userId: ', content.userId, personID);
     localStorage.setItem('user', JSON.stringify(content));//сохранение всех данных юзера в локал сторидж
 };

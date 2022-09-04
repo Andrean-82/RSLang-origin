@@ -27,6 +27,8 @@
     padding: 1rem;
     font-weight: 600;
     color: red;
+    align-items: center;
+    text-align: center;
 }
 
 .name_container{
@@ -51,7 +53,6 @@
         line-height: 30px;
         width: 100px;
         text-align: left;
-        font-size: 5px;
 
         &:after{
             position: absolute;
@@ -100,4 +101,23 @@
         text-decoration: none;
         padding: 10px;
     }
+}
+
+#logged-user-container {
+    .test{
+        &:after{
+            position: absolute;
+            content: '\e879';
+            font-family: "Material Icons";
+            font-size: 32px;
+        }
+    }
+}
+
+.email-div {
+    display: flex;
+    position: absolute;
+    border: none;
+    right: 8rem;
+    top: 1.2rem;
 }
