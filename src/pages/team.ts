@@ -14,7 +14,7 @@ class Team extends Page {
           <div class="teamCard">
             <img src="../src/assets/main_pandas/8.png" class="photo"></img>
             <div>
-              <span><img src="../src/assets/svg/github.svg" class="git"></img></span>
+              <span><img src="../assets/svg/github.svg" class="git"></img></span>
               <span><a class="link-github" href="https://github.com/marumaru1">Maria</a></span>
             </div>
             <div class="teamDescription">
@@ -24,7 +24,7 @@ class Team extends Page {
           </div>
 
           <div class="teamCard team-lead">
-            <img src="../src/assets/main_pandas/13.png" class="photo"></img>
+            <img src="../assets/main_pandas/13.png" class="photo"></img>
             <div>
               <span><img src="../src/assets/svg/github.svg" class="git"></img></span>
               <span><a class="link-github" href="https://github.com/Andrean-82">Anatoliy</a></span>
@@ -35,9 +35,9 @@ class Team extends Page {
           </div>
     
           <div class="teamCard">
-            <img src="../src/assets/main_pandas/4.png" class="photo"></img>
+            <img src="../assets/main_pandas/4.png" class="photo"></img>
             <div>
-              <span><img src="../src/assets/svg/github.svg" class="git"></img></span>
+              <span><img src="../assets/svg/github.svg" class="git"></img></span>
               <span><a class="link-github" href="https://github.com/SPECTRA995">Maksim</a></span>
             </div>
             <div class="teamDescription">

@@ -19,44 +19,57 @@ export let personID: string;
 
 
 export const openForm = () => {
-    console.log('1: logOut ', localStorage.getItem('user'));
-    const a = localStorage.getItem('user');
-    if( a?.includes('"logOut":"false"') && a?.includes('"email"')) {
-        openRegFormBtn.classList.add('test');
-        openRegFormBtn.textContent = 'LOG OUT';
+    //localStorage.clear();
+    const userData = localStorage.getItem('user');
+    if( userData?.includes('"logOut":"false"') && userData?.includes('"email"')) {
+        if (userData.length > 299) {
+            openRegFormBtn.classList.add('test');
+            openRegFormBtn.textContent = 'LOG OUT';
+            const newstr = userData.split('');
+            const one = newstr.splice(508);
+            const two = one.splice(-19);
+            const result = one.join('');
+            divForEmail.textContent = result;
+            form.before(divForEmail);
 
-        const newstr = a.split('');
-        const one = newstr.splice(508);
-        const two = one.splice(-19);
-        const result = one.join('');
-        divForEmail.textContent = result;
-        form.before(divForEmail);
+        } else if (userData.length < 300) {
+            openRegFormBtn.classList.add('test');
+            openRegFormBtn.textContent = 'LOG OUT';
+            const newstr = userData.split('');
+            const one = newstr.splice(42);
+            const two = one.splice(-19);
+            const result = one.join('');
+            divForEmail.textContent = result;
+            form.before(divForEmail);
+        }
     }
-    // localStorage.clear();
+
+    if( userData?.includes('"logOut":"true"')) {
+        hideStatNav();
+        localStorage.removeItem('user');
+        new Dictionary().openPage();
+    }
+
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
-        for(let i = 0; i < localStorage.length; i++) {
-            console.log('//////////////////////////////////////////////');
-            console.log('localStorage.key ', localStorage.key(i), 'localStorage.value ', localStorage.getItem(`${localStorage.key(i)}`));
-            console.log('//////////////////////////////////////////////');
-        }
-        if (isUserLoggedIn()){
-            hideStatNav(); //убираю статистику иконку
-            localStorage.removeItem('user');//очищает локал сторидж
-            new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
-        }
+        // if (isUserLoggedIn()) {
+            // hideStatNav(); //убираю статистику иконку
+            // localStorage.removeItem('user');//очищает локал сторидж
+            // new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
+        // }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
+            hideStatNav();
+            divForEmail.textContent = '';
             openRegFormBtn.classList.remove('test');
-            if( a?.includes('"logOut":"false"')) {
-                const newstr = a.replace(/false/i, 'true');
+            localStorage.removeItem('user');
+            if( userData?.includes('"logOut":"false"')) {
+                const newstr = userData.replace(/false/i, 'true');
                 divForEmail.textContent = '';
                 localStorage.setItem('user', newstr);
             }
-            console.log('2: logOut ', localStorage);
         } else if (!isOpenForm) {
             overlay.style.display = 'block';
             layout.style.display = 'block';
-
             overlay.style.position = 'absolute';
             overlay.style.background = 'rgba(0, 0, 0, 0.8)';
             overlay.style.left = '0';
@@ -77,8 +90,8 @@ export const openForm = () => {
             const infoDiv = layout.childNodes[1].childNodes[13] as HTMLElement;
 
             const logIn = logInBtn.addEventListener('click', () => {
-                console.log('logIn');
                 sendData();
+                showStatNav();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
@@ -86,11 +99,10 @@ export const openForm = () => {
                 }, 300);
             });
 
-            const signIn = signInBtn.addEventListener('click', async () => { //чекин - асинхр функция добавили асинк чтобы работал checkIn()
-                console.log('signIn');
-                await checkIn(); // добавила проверку
-                showStatNav();//показывает стату
-                new Dictionary().openPage();//перерендер
+            const signIn = signInBtn.addEventListener('click', async () => {
+                await checkIn();
+                showStatNav();
+                new Dictionary().openPage();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
@@ -122,24 +134,14 @@ export const authenticator = async (email: string, password: string) => {
         .then((response) => response.json())
         .then((data) => {
             infoDiv.innerText = '';
-            // console.log('data: ', data);
             data.logOut = 'false';
-            // localStorage.setItem(`${data.id}`, `${data.email}`);
-            localStorage.setItem('user', JSON.stringify(data));//сохранение всех данных юзера в локал сторидж
-            openRegFormBtn.textContent = localStorage.getItem(`${data.id}`);
 
-            // const divForEmail = document.createElement('div');
-            // divForEmail.className = 'email-div';
-            divForEmail.textContent = localStorage.getItem(`${data.id}`);
+            localStorage.setItem('user', JSON.stringify(data));
+            divForEmail.textContent = `${data.email}`;
             form.before(divForEmail);
             openRegFormBtn.textContent = 'LOG OUT';
 
             personID = data.id;
-            // console.log('data.id', personID, data.id);
-
-            // for (let i = 0; i < localStorage.length; i++) {
-            //     console.log(localStorage.getItem(`${localStorage.key(i)}`));
-            // }
         })
         .catch((e) => (infoDiv.innerText = `This email address: '${email}' is already being used!\n\nTry again, but click on "SIGN IN" button.`))
         .finally(async () => {
@@ -167,9 +169,6 @@ export const authenticator = async (email: string, password: string) => {
                     isOpenForm = false;
                 }
             }, 2000);
-            ///////////////////////////////
-            // console.log('token: ', token);
-            // console.log('local storage: ', localStorage);
         });
 };
 
@@ -185,11 +184,6 @@ export const sendData = () => {
         authenticator(email, password);
     } else {
         infoDiv.innerText = 'Incorrect login or password..';
-        ////////////////////////////////
-        // overlay.style.display = 'block';
-        // layout.style.display = 'block';
-        // isOpenForm = true;
-        ///////////////////////////////
     }
 };
 
@@ -219,8 +213,6 @@ export const checkIn = async () => {
         }
     });
     if (email.match(emailPattern) && infoDiv.textContent === '') {
-        // const divForEmail = document.createElement('div');
-        // divForEmail.className = 'email-div';
         divForEmail.textContent = email;
         form.before(divForEmail);
         openRegFormBtn.textContent = 'LOG OUT';
@@ -241,12 +233,7 @@ export const checkIn = async () => {
             isOpenForm = false;
         }
     }, 2000);
-    ///////////////////////////////
-    // console.log('token: ', token);
     content.email = email;
     content.logOut = 'false';
-    console.log('content checkIn: ', content);
-    console.log('3: logOut ', localStorage);
-    // console.log('content.userId: ', content.userId, personID);
     localStorage.setItem('user', JSON.stringify(content));//сохранение всех данных юзера в локал сторидж
 };
