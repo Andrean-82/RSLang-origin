@@ -43,7 +43,7 @@ class Dictionary extends Page {
         <img class="gameLogo" src="../assets/png/audio.png" data-game="challenge"></img>
           <div data-game="challenge">Audio Challenge</div>
         </div>
-        <img src="assets/completed.png" class="completedIcon"></img>
+        <img src="../assets/png/completed.png" class="completedIcon"></img>
       </div>
 
       <div class="pageSelector">
