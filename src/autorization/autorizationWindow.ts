@@ -9,23 +9,67 @@ openRegFormBtn.innerText = 'SIGN IN';
 
 const overlay = createElement('div', document.body, ['overlay']);
 const layout = createElement('div', document.body, ['layout']);
+
+const divForEmail = document.createElement('div');
+divForEmail.className = 'email-div';
+
 let isOpenForm = false;
 export let token: string;
 export let personID: string;
 
+
 export const openForm = () => {
-    const clearBtn = openRegFormBtn.addEventListener('click', () => {
-        if (isUserLoggedIn()) {
-            hideStatNav(); //убираю статистику иконку
-            localStorage.removeItem('user'); //очищает локал сторидж
-            new Dictionary().openPage(); //автоматически перерисовывает и скрывает кнопку сложных слов
+    //localStorage.clear();
+    const userData = localStorage.getItem('user');
+    if( userData?.includes('"logOut":"false"') && userData?.includes('"email"')) {
+        if (userData.length > 299) {
+            openRegFormBtn.classList.add('test');
+            openRegFormBtn.textContent = 'LOG OUT';
+            const newstr = userData.split('');
+            const one = newstr.splice(508);
+            const two = one.splice(-19);
+            const result = one.join('');
+            divForEmail.textContent = result;
+            form.before(divForEmail);
+
+        } else if (userData.length < 300) {
+            openRegFormBtn.classList.add('test');
+            openRegFormBtn.textContent = 'LOG OUT';
+            const newstr = userData.split('');
+            const one = newstr.splice(42);
+            const two = one.splice(-19);
+            const result = one.join('');
+            divForEmail.textContent = result;
+            form.before(divForEmail);
         }
+    }
+
+    if( userData?.includes('"logOut":"true"')) {
+        hideStatNav();
+        localStorage.removeItem('user');
+        new Dictionary().openPage();
+    }
+
+    const clearBtn = openRegFormBtn.addEventListener('click', () => {
+        // if (isUserLoggedIn()) {
+            // hideStatNav(); //убираю статистику иконку
+            // localStorage.removeItem('user');//очищает локал сторидж
+            // new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
+        // }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
+            hideStatNav();
+            divForEmail.textContent = '';
+            openRegFormBtn.classList.remove('test');
+            localStorage.removeItem('user');
+            if( userData?.includes('"logOut":"false"')) {
+                const newstr = userData.replace(/false/i, 'true');
+                divForEmail.textContent = '';
+                localStorage.setItem('user', newstr);
+            }
         } else if (!isOpenForm) {
             overlay.style.display = 'block';
             layout.style.display = 'block';
-
             overlay.style.position = 'absolute';
             overlay.style.background = 'rgba(0, 0, 0, 0.8)';
             overlay.style.left = '0';
@@ -46,16 +90,24 @@ export const openForm = () => {
             const infoDiv = layout.childNodes[1].childNodes[13] as HTMLElement;
 
             const logIn = logInBtn.addEventListener('click', () => {
-                console.log('logIn');
                 sendData();
+                showStatNav();
+                setTimeout(() => {
+                    if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
+                        openRegFormBtn.classList.add('test');
+                    }
+                }, 300);
             });
 
             const signIn = signInBtn.addEventListener('click', async () => {
-                //чекин - асинхр функция добавили асинк чтобы работал checkIn()
-                console.log('signIn');
-                await checkIn(); // добавила проверку
-                showStatNav(); //показывает стату
-                new Dictionary().openPage(); //перерендер
+                await checkIn();
+                showStatNav();
+                new Dictionary().openPage();
+                setTimeout(() => {
+                    if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
+                        openRegFormBtn.classList.add('test');
+                    }
+                }, 300);
             });
 
             const closeForm = closeFormBtn.addEventListener('click', () => {
@@ -81,16 +133,15 @@ export const authenticator = async (email: string, password: string) => {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log('data: ', data);
-            localStorage.setItem(`${data.id}`, `${data.email}`);
-            localStorage.setItem('user', JSON.stringify(data)); //сохранение всех данных юзера в локал сторидж
-            openRegFormBtn.textContent = localStorage.getItem(`${data.id}`);
-            personID = data.id;
-            console.log('data.id', personID, data.id);
+            infoDiv.innerText = '';
+            data.logOut = 'false';
 
-            for (let i = 0; i < localStorage.length; i++) {
-                console.log(localStorage.getItem(`${localStorage.key(i)}`));
-            }
+            localStorage.setItem('user', JSON.stringify(data));
+            divForEmail.textContent = `${data.email}`;
+            form.before(divForEmail);
+            openRegFormBtn.textContent = 'LOG OUT';
+
+            personID = data.id;
         })
         .catch((e) => (infoDiv.innerText = `This email address: '${email}' is already being used!\n\nTry again, but click on "SIGN IN" button.`))
         .finally(async () => {
@@ -102,11 +153,22 @@ export const authenticator = async (email: string, password: string) => {
                 },
                 body: JSON.stringify({ email, password }),
             });
-
             const content = await rawResponse.json();
             token = content.token;
-            console.log('token: ', token);
-            console.log('local storage: ', localStorage);
+            //////////////////////////////// В случае успешной регистрации - выводит сообщение и через секунду окно закрывается.
+            setTimeout(() => {
+                if (infoDiv.textContent === '') {
+                    infoDiv.textContent = `Welcome ${email}!`;
+                }
+            }, 1000);
+
+            setTimeout(() => {
+                if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+                    overlay.style.display = 'none';
+                    layout.style.display = 'none';
+                    isOpenForm = false;
+                }
+            }, 2000);
         });
 };
 
@@ -151,12 +213,27 @@ export const checkIn = async () => {
         }
     });
     if (email.match(emailPattern) && infoDiv.textContent === '') {
-        openRegFormBtn.textContent = email;
+        divForEmail.textContent = email;
+        form.before(divForEmail);
+        openRegFormBtn.textContent = 'LOG OUT';
     }
     token = content.token;
     personID = content.userId;
-    console.log('token: ', token);
-    console.log('content checkIn: ', content);
-    console.log('content.userId: ', content.userId, personID);
-    localStorage.setItem('user', JSON.stringify(content)); //сохранение всех данных юзера в локал сторидж
+    //////////////////////////////// В случае успешной регистрации - выводит сообщение и через секунду окно закрывается.
+    setTimeout(() => {
+        if (infoDiv.textContent === '') {
+            infoDiv.textContent = `Welcome ${email}!`;
+        }
+    }, 1000);
+
+    setTimeout(() => {
+        if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+            overlay.style.display = 'none';
+            layout.style.display = 'none';
+            isOpenForm = false;
+        }
+    }, 2000);
+    content.email = email;
+    content.logOut = 'false';
+    localStorage.setItem('user', JSON.stringify(content));//сохранение всех данных юзера в локал сторидж
 };
