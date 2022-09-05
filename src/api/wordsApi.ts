@@ -18,14 +18,19 @@ export async function getWordbyId(id: string): Promise<Word[]> {
 
 export async function getAggregatedWords(groupNumber: number, pageNumber: number) {
     const response = await fetch(`${urlAdressUser}/${getCurrentUser().userId}/aggregatedWords?group=${groupNumber}&page=${pageNumber}&wordsPerPage=20`, {
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${getCurrentUser().token}`,
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
+        method: 'GET',
+        headers: {
+            Authorization: `Bearer ${getCurrentUser().token}`,
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+        },
     });
     const words = await response.json();
     console.log(words[0].paginatedResults);
+
+
+
+
+    
     return words[0].paginatedResults;
 }

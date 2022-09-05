@@ -17,7 +17,7 @@ type Pages = 'main' | 'team' | 'games' | 'dictionary' | 'statistics';
 class Router {
     routes: Routes;
     currentPage: Pages;
-    constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics; }) {
+    constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics }) {
         this.routes = routes;
         this.currentPage = 'main';
         loadUser();
@@ -30,7 +30,7 @@ class Router {
     openPage(event: Event): void {
         const element = event.target as HTMLElement;
         const selectedPage = element.dataset.page as Pages;
-        if (selectedPage && selectedPage !== this.currentPage) {
+        if (selectedPage) {
             window.history.pushState('', '', `/${selectedPage}`);
             this.routes[selectedPage].openPage();
             this.currentPage = selectedPage;

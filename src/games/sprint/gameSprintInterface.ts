@@ -1,4 +1,5 @@
 import { createElement } from '../../components/createElement';
+import { wrapperTime } from './timeDown';
 import { clickButtonNoYes } from './clickEventListnerNoYes';
 import { getWordsinGemeSprint } from './gemeSprintGetWords';
 
@@ -7,7 +8,7 @@ export async function sprintGame(arrayObject: []) {
     closeBtn.classList.toggle('close_btn_sprint_interfece');
     const header = createElement('div', closeBtn, ['header_game_sprint'], { ['id']: 'header_game_sprint' });
     const headerDiv_1 = createElement('div', header, ['header_div_1'], { ['id']: 'header_div_1' });
-    createElement('p', headerDiv_1, ['hour_meter'], { ['id']: 'hour_meter' });
+    const pForTime = createElement('p', headerDiv_1, ['hour_meter'], { ['id']: 'hour_meter' });
     const headerDiv_2 = createElement('div', header, ['header_div_2'], { ['id']: 'header_div_1' });
     createElement('div', headerDiv_2, ['score_sprint_text'], { ['id']: 'score_sprint_text' }).textContent = 'SCORE:';
     createElement('div', headerDiv_2, ['score_sprint'], { ['id']: 'score_sprint' }).textContent = '0'; //const scoreSprint =
@@ -36,4 +37,7 @@ export async function sprintGame(arrayObject: []) {
     }).textContent = 'YES';
     clickButtonNoYes();
     getWordsinGemeSprint(arrayObject);
+    const times = wrapperTime(pForTime);
+    const interval = setInterval(times, 1000);
+    sessionStorage.setItem('interval', `${interval}`);
 }
