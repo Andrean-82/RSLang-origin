@@ -18,11 +18,10 @@ let isOpenForm = false;
 export let token: string;
 export let personID: string;
 
-
 export const openForm = () => {
     //localStorage.clear();
     const userData = localStorage.getItem('user');
-    if( userData?.includes('"logOut":"false"') && userData?.includes('"email"')) {
+    if (userData?.includes('"logOut":"false"') && userData?.includes('"email"')) {
         if (userData.length > 299) {
             openRegFormBtn.classList.add('test');
             openRegFormBtn.textContent = 'LOG OUT';
@@ -32,7 +31,6 @@ export const openForm = () => {
             const result = one.join('');
             divForEmail.textContent = result;
             form.before(divForEmail);
-
         } else if (userData.length < 300) {
             openRegFormBtn.classList.add('test');
             openRegFormBtn.textContent = 'LOG OUT';
@@ -45,7 +43,7 @@ export const openForm = () => {
         }
     }
 
-    if( userData?.includes('"logOut":"true"')) {
+    if (userData?.includes('"logOut":"true"')) {
         hideStatNav();
         localStorage.removeItem('user');
         new Dictionary().openPage();
@@ -53,9 +51,9 @@ export const openForm = () => {
 
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
         // if (isUserLoggedIn()) {
-            // hideStatNav(); //убираю статистику иконку
-            // localStorage.removeItem('user');//очищает локал сторидж
-            // new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
+        // hideStatNav(); //убираю статистику иконку
+        // localStorage.removeItem('user');//очищает локал сторидж
+        // new Dictionary().openPage();//автоматически перерисовывает и скрывает кнопку сложных слов
         // }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
@@ -64,7 +62,7 @@ export const openForm = () => {
             openRegFormBtn.classList.remove('test');
             new Main().openPage();
             localStorage.removeItem('user');
-            if( userData?.includes('"logOut":"false"')) {
+            if (userData?.includes('"logOut":"false"')) {
                 const newstr = userData.replace(/false/i, 'true');
                 divForEmail.textContent = '';
                 localStorage.setItem('user', newstr);
@@ -93,7 +91,7 @@ export const openForm = () => {
 
             const logIn = logInBtn.addEventListener('click', () => {
                 sendData();
-                
+
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
@@ -104,7 +102,7 @@ export const openForm = () => {
 
             const signIn = signInBtn.addEventListener('click', async () => {
                 await checkIn();
-                
+
                 //new Dictionary().openPage();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
@@ -167,7 +165,7 @@ export const authenticator = async (email: string, password: string) => {
             }, 1000);
 
             setTimeout(() => {
-                if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+                if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
                     overlay.style.display = 'none';
                     layout.style.display = 'none';
                     isOpenForm = false;
@@ -231,7 +229,7 @@ export const checkIn = async () => {
     }, 1000);
 
     setTimeout(() => {
-        if(infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
+        if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${email}!`) {
             overlay.style.display = 'none';
             layout.style.display = 'none';
             isOpenForm = false;
@@ -239,5 +237,5 @@ export const checkIn = async () => {
     }, 2000);
     content.email = email;
     content.logOut = 'false';
-    localStorage.setItem('user', JSON.stringify(content));//сохранение всех данных юзера в локал сторидж
+    localStorage.setItem('user', JSON.stringify(content)); //сохранение всех данных юзера в локал сторидж
 };
