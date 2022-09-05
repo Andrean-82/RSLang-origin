@@ -29,7 +29,6 @@ export async function audioGame() {
     menyDiv(2, 'div', blokTwoinOne, ['blok_two_']);
     menyDiv(2, 'div', blokThreeinOne, ['blok_three_']);
     menyDiv(2, 'div', blokOneinTwo, ['blok_four_']);
-    menyDiv(1, 'div', wrapperStart, ['picture_']);
     menyDiv(2, 'div', blokTwoinTwo, ['blok_five_']);
     menyDiv(1, 'div', blokOneinThree, ['button_if_cant_']);
     const oneKey = <HTMLElement>document.querySelector('.blok_one_0');

@@ -4,7 +4,6 @@ export function gameSprintAddColor() {
     const arrayColor: Array<string> = JSON.parse(`${arrayColorModif}`);
     const formRezult2 = <HTMLElement>document.getElementById('form_result_2');
     const tdWrapperTrue = createElement('div', formRezult2, ['td_wrapper_true'], { ['id']: 'td_wrapper_true' });
-    console.log(arrayColor);
     arrayColor.forEach((elem: string) => {
         const wrapperRezultTrue = createElement('div', tdWrapperTrue, ['wrapper_rezult_true'], {
             ['id']: 'wrapper_rezult_ansver',
