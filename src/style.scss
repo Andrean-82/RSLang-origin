@@ -10,10 +10,8 @@
 @import './style/main';
 @import './style/stats';
 @import './style/const';
-//<<<<<<< HEAD
 @import './games/sprint/gameSprint';
 @import './games/audio/gameAudio';
-//=======
 @import './style/navigation';
 @import './style/global';
 @import './style/fonts';
@@ -23,10 +21,8 @@
 @import './style/reg';
 @import './style/tooltip';
 
-
-
 *{
   margin:0;
   padding:0;
 }
-//>>>>>>> develop
+
