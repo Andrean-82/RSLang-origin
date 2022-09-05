@@ -10,12 +10,12 @@ const arrayNumber = parseJsonFile('arrayNumberaddWord');
 const arrayColor: Array<string> = [];
 
 export const clickButtonNoYes = () => {
-    (document.querySelector('.close_btn') as HTMLElement).onclick = async function (event) {
+    (document.querySelector('.close_btn') as HTMLElement).addEventListener('click', (event) => {
         const button = event.target;
         const score = <HTMLElement>document.getElementById('score_sprint');
         const buttonFalse = <HTMLButtonElement>document.getElementById('button_false');
         const buttonTrue = <HTMLButtonElement>document.getElementById('button_true');
-        if (this.onclick) {
+        if (event) {
             try {
                 if (arrayNumber[i][j] != arrayNumber[i][k] && button === buttonFalse) {
                     count += 10;
@@ -59,5 +59,5 @@ export const clickButtonNoYes = () => {
                 sprintGameResult();
             }
         }
-    };
+    });
 };

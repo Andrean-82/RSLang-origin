@@ -12,7 +12,7 @@ class Main extends Page {
     openPage(): void {
         const pageHtml = `
       <div class="mainPageContainer">
-        <h1>Welcome to RS Lang </h1>  
+        <h1>Welcome to Panda Lang </h1>  
         <img src="../assets/png/panda_main.png" alt="logo" width="160">
         <div class="tittle_text">
           Learn more than 3500 new English words with <b>Panda</b>! <BR/>

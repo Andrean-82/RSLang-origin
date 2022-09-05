@@ -2,7 +2,8 @@ import { grupeFive, grupeFour, grupeOne, grupeThree, grupeTwo, grupeZero } from 
 import { complecteElementAudio } from '../components-game/gameComplecteForClickLevel';
 
 export const clickButtonAudio = () => {
-    (document.querySelector('.audio_challenge') as HTMLElement).onclick = async function (event) {
+    (document.getElementById('app') as HTMLElement).addEventListener('click', (event) => {
+        //audio_challenge
         const button = event.target;
         const Zero = grupeZero();
         const One = grupeOne();
@@ -28,5 +29,5 @@ export const clickButtonAudio = () => {
         if (button === Five) {
             complecteElementAudio(Five);
         }
-    };
+    });
 };

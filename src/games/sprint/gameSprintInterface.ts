@@ -36,8 +36,8 @@ export async function sprintGame(arrayObject: []) {
         ['id']: 'button_true',
     }).textContent = 'YES';
     clickButtonNoYes();
-    getWordsinGemeSprint(arrayObject);
     const times = wrapperTime(pForTime);
     const interval = setInterval(times, 1000);
     sessionStorage.setItem('interval', `${interval}`);
+    getWordsinGemeSprint(arrayObject);
 }

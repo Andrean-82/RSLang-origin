@@ -1,7 +1,7 @@
 import { gameLevel } from '../components-game/gameLevel';
 
 export const clickButtonPlay = () => {
-    (document.querySelector('.gamesPageContainer') as HTMLElement).onclick = async function (event) {
+    (document.querySelector('.gamesPageContainer') as HTMLElement).addEventListener('click', (event) => {
         const button = event.target;
         sessionStorage.setItem('buttonChioce', `${button}`);
         const sprint = <HTMLElement>document.querySelector('.sprint');
@@ -14,5 +14,5 @@ export const clickButtonPlay = () => {
             sessionStorage.setItem('clickPlay', '2');
             gameLevel();
         }
-    };
+    });
 };
