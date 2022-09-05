@@ -5,8 +5,7 @@ import { complecteElementAudioWord } from './one';
 
 export function wrapper(trable: string) {
     if (trable === 'false') {
-        imagAnswer('false');
-        countLife();
+        countLife('false');
         countAnswerFalse();
         complecteElementAudioWord();
     }

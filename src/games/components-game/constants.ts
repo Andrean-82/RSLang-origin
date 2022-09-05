@@ -34,9 +34,9 @@ export const blokFive = () => {
 export const picture = () => {
     return <HTMLElement>document.querySelector('.picture_0');
 };
-export const hourMeterParagraf = () => {
-    return <HTMLElement>document.querySelector('.hour_meter');
-};
+// export const hourMeterParagraf = () => {
+//     return <HTMLParagraphElement>document.querySelector('.hour_meter');
+// };
 export const buttonCant = () => {
     return <HTMLElement>document.querySelector('.button_if_cant_0');
 };

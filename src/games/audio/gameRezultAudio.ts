@@ -15,7 +15,7 @@ export function gameRezultAudio() {
     const app = audioChallenge();
     app.innerHTML = '';
     const wrapperScore = (createElement('div', app, ['wrapper_score']).textContent = `YOURE SCORE: ${countAnswerScore}`);
-    const wrapperRezult = createElement('div', app, ['wrapper_rezult']);
+    const wrapperRezult = createElement('div', app, ['wrapper_rezult_audio']);
     const oneBlok = createElement('div', wrapperRezult, ['one_rezult']);
     const twoBlok = createElement('div', wrapperRezult, ['two_rezult']);
     const threeBlok = createElement('div', wrapperRezult, ['three_rezult']);

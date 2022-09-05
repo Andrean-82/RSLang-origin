@@ -1,7 +1,7 @@
 import { createElement } from '../../components/createElement';
 import { wsg } from '../components-game/constants';
 
-export const imagAnswer = (boolenAnswer: string) => {
+export function imagAnswer(boolenAnswer: string) {
     const divForPic = wsg();
     if (boolenAnswer === 'false') {
         divForPic.innerHTML = '';
@@ -19,4 +19,4 @@ export const imagAnswer = (boolenAnswer: string) => {
             ['alt']: 'Like',
         });
     }
-};
+}

@@ -4,7 +4,10 @@ import { gameSprintAddColor } from './gameSprintCreateDivColor';
 import { gameSprintAddYN } from './gameSprintCreateDivYN';
 
 export function sprintGameResult() {
-    const count = sessionStorage.getItem('count');
+    let count = sessionStorage.getItem('count');
+    if (count === null) {
+        count = '0';
+    }
     const closeBtn = <HTMLElement>document.querySelector('.close_btn');
     closeBtn.innerHTML = '';
     closeBtn.classList.toggle('wrapper_game_sptint_result');
@@ -30,4 +33,5 @@ export function sprintGameResult() {
     });
     const rezervePage = createElement('div', formResult3, ['rezerve_btn'], { ['id']: 'rezerve_btn' });
     rezervePage.textContent = 'X';
+    sessionStorage.clear();
 }

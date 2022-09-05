@@ -9,4 +9,5 @@ export const countAnswer = () => {
 
 export const countAnswerFalse = () => {
     countFalseAnswer += 1;
+    return countFalseAnswer;
 };

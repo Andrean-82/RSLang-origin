@@ -1,23 +1,15 @@
-// import { hourMeterParagraf } from '../components-game/constants';
 import { generateArray } from '../components-game/gameArrayforGetWord';
 import { sprintGameResult } from './gameSprintResult';
-// import { wrapperTime } from '../components-game/timeDown';
-
-// const hourMeter = hourMeterParagraf();
-// const time = wrapperTime(59, hourMeter);
-// export const interval = setInterval(time, 1000);
 
 const lengthArrayIndex = 20;
 const arrayPosEng = generateArray(lengthArrayIndex); //.sort(() => Math.random() - 0.5);
-const arrayPosTranslete = generateArray(lengthArrayIndex); //.sort(() => Math.random() - 0.5);
+const arrayPosTranslete = generateArray(lengthArrayIndex).sort(() => Math.random() - 0.5);
 const arrayMod: Array<[number, number]> = [];
 for (let i = 0; i < arrayPosEng.length; i++) {
     arrayMod.push([arrayPosEng[i], arrayPosTranslete[i]]);
 }
-
 const arrayNumberaddWord = JSON.stringify(arrayMod);
 sessionStorage.setItem('arrayNumberaddWord', arrayNumberaddWord);
-
 export const randomPage = () => {
     const pageRand = 1 + Math.random() * (30 + 1 - 1);
     return Math.floor(pageRand);

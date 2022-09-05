@@ -2,8 +2,6 @@ import { createElement } from '../../components/createElement';
 import { parseJsonFile } from '../../components/parseJson';
 
 export function gameSprintAddAnsver() {
-    // const allWordAfterGame = sessionStorage.getItem('wordForRezult');
-    // const allWordAfterGameModif = JSON.parse(`${allWordAfterGame}`);
     const allWordAfterGameModif = parseJsonFile('wordForRezult');
     const formRezult2 = <HTMLElement>document.getElementById('form_result_2');
     const tdWrapperAnsver = createElement('div', formRezult2, ['tbody_result'], { ['id']: 'tbody_result' });

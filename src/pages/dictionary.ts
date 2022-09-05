@@ -2,37 +2,37 @@ import BookPage from '../components/bookPage';
 import { urlAdress } from '../api/fetchquery';
 import { addPageTitle } from '../components/createTitle';
 import Page from './page';
-import { markWordAsDifficult, markWordAsLearned, unmarkWordAsDifficult, unmarkWordAsLearned} from '../api/userWordsApi';
+import { markWordAsDifficult, markWordAsLearned, unmarkWordAsDifficult, unmarkWordAsLearned } from '../api/userWordsApi';
 import { isUserLoggedIn } from '../components/loginUtils';
 
 class Dictionary extends Page {
-  currentPage: number;
-  currentGroup: number;
-  isDifficultSectionOpened: boolean;
-  isPageCompleted: boolean;
-  isHandlersInited: boolean;
+    currentPage: number;
+    currentGroup: number;
+    isDifficultSectionOpened: boolean;
+    isPageCompleted: boolean;
+    isHandlersInited: boolean;
 
-  constructor() {
-    super('Dictionary');
-    this.currentPage = 0;
-    this.currentGroup = 0;
-    this.isDifficultSectionOpened = false;
-    this.isPageCompleted = false;
-    this.isHandlersInited = false;
-  }
-
-  openPage(): void {
-    this.renderPageElements();
-    this.renderPageContent();
-    addPageTitle(this.name);
-    if (!this.isHandlersInited) {
-      this.initHandlers();
+    constructor() {
+        super('Dictionary');
+        this.currentPage = 0;
+        this.currentGroup = 0;
+        this.isDifficultSectionOpened = false;
+        this.isPageCompleted = false;
+        this.isHandlersInited = false;
     }
-  }
 
-  renderPageElements(): void {
-    const isHidden = (isUserLoggedIn()) ? '' : 'hidden';
-    const pageHtml = `
+    openPage(): void {
+        this.renderPageElements();
+        this.renderPageContent();
+        addPageTitle(this.name);
+        if (!this.isHandlersInited) {
+            this.initHandlers();
+        }
+    }
+
+    renderPageElements(): void {
+        const isHidden = isUserLoggedIn() ? '' : 'hidden';
+        const pageHtml = `
     <div class="textbookContainer">
       <div class="gamesContainer">
         <div class="gameBtn" data-game="sprint">
@@ -74,145 +74,157 @@ class Dictionary extends Page {
 
     </div>
   `;
-    this.appContainer.innerHTML = pageHtml;
-  }
-
-  async renderPageContent(): Promise<void> {
-    if (this.isDifficultSectionOpened) {
-      new BookPage(0, 0).render(true);
-    } else {
-      await new BookPage(this.currentGroup, this.currentPage).render();
-      this.checkIfPageIsCompleted();
-      this.updatePageCounters();
-      this.setPageBackground();
-    }
-  }
-
-  initHandlers(): void {
-    document.addEventListener('click', this.scrollPage.bind(this));
-    document.addEventListener('click', this.openSelectedGroup.bind(this));
-    document.addEventListener('click', this.markUnmarkWordAsDifficult.bind(this));
-    document.addEventListener('click', this.markUnmarkWordAsLearnt.bind(this));
-    document.addEventListener('click', this.toggleDifficultWordsSection.bind(this));
-    document.addEventListener('click', Dictionary.playCardSound);
-    this.isHandlersInited = true;
-  }
-
-  scrollPage(event: Event): void {
-    const element = event.target as HTMLElement;
-    const buttonName = element.dataset.pagenav;
-
-    if (buttonName === 'prev' && this.currentPage > 0) {
-      this.currentPage -= 1;
-      this.renderPageContent();
+        this.appContainer.innerHTML = pageHtml;
     }
 
-    if (buttonName === 'next' && this.currentPage < 29) {
-      this.currentPage += 1;
-      this.renderPageContent();
+    async renderPageContent(): Promise<void> {
+        if (this.isDifficultSectionOpened) {
+            new BookPage(0, 0).render(true);
+        } else {
+            await new BookPage(this.currentGroup, this.currentPage).render();
+            this.checkIfPageIsCompleted();
+            this.updatePageCounters();
+            this.setPageBackground();
+        }
     }
-  }
 
-  openSelectedGroup(event: Event): void {
-    const element = event.target as HTMLElement;
-    const groupId = element.dataset.group;
-
-    if (groupId && element.parentElement?.className === 'groupSelector') {
-      this.currentGroup = Number(groupId);
-      this.currentPage = 0;
-      this.renderPageContent();
+    initHandlers(): void {
+        document.addEventListener('click', this.scrollPage.bind(this));
+        document.addEventListener('click', this.openSelectedGroup.bind(this));
+        document.addEventListener('click', this.markUnmarkWordAsDifficult.bind(this));
+        document.addEventListener('click', this.markUnmarkWordAsLearnt.bind(this));
+        document.addEventListener('click', this.toggleDifficultWordsSection.bind(this));
+        document.addEventListener('click', Dictionary.playCardSound);
+        this.isHandlersInited = true;
     }
-  }
 
-  updatePageCounters(): void {
-    (document.getElementById('currentPage') as HTMLDivElement).innerText = `${this.currentPage + 1}`;
-  }
+    scrollPage(event: Event): void {
+        const element = event.target as HTMLElement;
+        const buttonName = element.dataset.pagenav;
 
-  async markUnmarkWordAsDifficult(event: Event): Promise<void> {
-    const element = event.target as HTMLElement;
-    const wordCard = element.parentElement?.parentElement?.parentElement;
-    const wordId = wordCard?.dataset.wordid;
+        if (buttonName === 'prev' && this.currentPage > 0) {
+            this.currentPage -= 1;
+            this.renderPageContent();
+        }
 
-    if (element.className.includes('difficultIcon') && wordId) {
-      if (wordCard.classList.contains('difficult')) {
-        await unmarkWordAsDifficult(wordId);
-      } else {
-        await markWordAsDifficult(wordId);
-      }
-      this.renderPageContent();
+        if (buttonName === 'next' && this.currentPage < 29) {
+            this.currentPage += 1;
+            this.renderPageContent();
+        }
     }
-  }
 
-  async markUnmarkWordAsLearnt(event: Event): Promise<void> {
-    const element = event.target as HTMLElement;
-    const wordCard = element.parentElement?.parentElement?.parentElement;
-    const wordId = wordCard?.dataset.wordid;
+    openSelectedGroup(event: Event): void {
+        const element = event.target as HTMLElement;
+        const groupId = element.dataset.group;
 
-    if (element.className.includes('learntIcon') && wordId) {
-      if (wordCard.classList.contains('learnt')) {
-        await unmarkWordAsLearned(wordId);
-      } else {
-        await markWordAsLearned(wordId);
-      }
-      this.renderPageContent();
+        if (groupId && element.parentElement?.className === 'groupSelector') {
+            this.currentGroup = Number(groupId);
+            this.currentPage = 0;
+            this.renderPageContent();
+        }
     }
-  }
 
-  toggleDifficultWordsSection(event: Event): void {
-    const element = event.target as HTMLElement;
-    if (element.id === 'difficultWords') {
-      if (this.isDifficultSectionOpened) {
-        this.isDifficultSectionOpened = false;
-        (document.querySelector('.groupSelector') as HTMLElement).classList.remove('disabled');
-        (document.querySelector('.pageSelector') as HTMLElement).classList.remove('disabled');
-        (document.querySelector('.gamesContainer') as HTMLElement).classList.remove('disabled');
-        (document.getElementById('difficultWords') as HTMLElement).style.color = 'black';
-        this.renderPageContent();
-      } else {
-        this.isDifficultSectionOpened = true;
-        (document.querySelector('.groupSelector') as HTMLElement).classList.add('disabled');
-        (document.querySelector('.pageSelector') as HTMLElement).classList.add('disabled');
-        (document.querySelector('.gamesContainer') as HTMLElement).classList.add('disabled');
-        (document.getElementById('difficultWords') as HTMLElement).style.color = '#ffbb33';
-        new BookPage(0, 0).render(true);
-      }
+    updatePageCounters(): void {
+        (document.getElementById('currentPage') as HTMLDivElement).innerText = `${this.currentPage + 1}`;
     }
-  }
 
+    async markUnmarkWordAsDifficult(event: Event): Promise<void> {
+        const element = event.target as HTMLElement;
+        const wordCard = element.parentElement?.parentElement?.parentElement;
+        const wordId = wordCard?.dataset.wordid;
 
-  checkIfPageIsCompleted(): void {
-    const wordCards = Array.from(document.getElementsByClassName('wordCard'));
-    const cards = wordCards.filter((card) => (card.classList.contains('difficult') || card.classList.contains('learnt')));
-    if (cards.length === 20 && !this.isDifficultSectionOpened) {
-      document.querySelectorAll('.gameBtn').forEach((btn) => btn.classList.add('disabled'));
-      (document.querySelector('.completedIcon') as HTMLElement).style.display = 'block';
-    } else {
-      document.querySelectorAll('.gameBtn').forEach((btn) => btn.classList.remove('disabled'));
-      (document.querySelector('.completedIcon') as HTMLElement).style.display = 'none';
+        if (element.className.includes('difficultIcon') && wordId) {
+            if (wordCard.classList.contains('difficult')) {
+                await unmarkWordAsDifficult(wordId);
+            } else {
+                await markWordAsDifficult(wordId);
+            }
+            this.renderPageContent();
+        }
     }
-  }
 
-  static playCardSound(event: Event): void {
-    const element = event.target as HTMLElement;
-    const audio = element.dataset.sound;
+    async markUnmarkWordAsLearnt(event: Event): Promise<void> {
+        const element = event.target as HTMLElement;
+        const wordCard = element.parentElement?.parentElement?.parentElement;
+        const wordId = wordCard?.dataset.wordid;
 
-    if (audio) {
-      new Audio(`${urlAdress}/${audio}`).play();
+        if (element.className.includes('learntIcon') && wordId) {
+            if (wordCard.classList.contains('learnt')) {
+                await unmarkWordAsLearned(wordId);
+            } else {
+                await markWordAsLearned(wordId);
+            }
+            this.renderPageContent();
+        }
     }
-  }
 
-  setPageBackground(): void {
-    const container = document.querySelector('.textbookContainer') as HTMLElement;
-    switch (this.currentGroup) {
-      case 0: container.style.backgroundColor = '#7B7FF1'; break;
-      case 1: container.style.backgroundColor = '#7276E0'; break;
-      case 2: container.style.backgroundColor = '#6569C7'; break;
-      case 3: container.style.backgroundColor = '#5255A1'; break;
-      case 4: container.style.backgroundColor = '#313361'; break;
-      case 5: container.style.backgroundColor = '#2A1D61'; break;
-      default: break;
+    toggleDifficultWordsSection(event: Event): void {
+        const element = event.target as HTMLElement;
+        if (element.id === 'difficultWords') {
+            if (this.isDifficultSectionOpened) {
+                this.isDifficultSectionOpened = false;
+                (document.querySelector('.groupSelector') as HTMLElement).classList.remove('disabled');
+                (document.querySelector('.pageSelector') as HTMLElement).classList.remove('disabled');
+                (document.querySelector('.gamesContainer') as HTMLElement).classList.remove('disabled');
+                (document.getElementById('difficultWords') as HTMLElement).style.color = 'black';
+                this.renderPageContent();
+            } else {
+                this.isDifficultSectionOpened = true;
+                (document.querySelector('.groupSelector') as HTMLElement).classList.add('disabled');
+                (document.querySelector('.pageSelector') as HTMLElement).classList.add('disabled');
+                (document.querySelector('.gamesContainer') as HTMLElement).classList.add('disabled');
+                (document.getElementById('difficultWords') as HTMLElement).style.color = '#ffbb33';
+                new BookPage(0, 0).render(true);
+            }
+        }
     }
-  }
+
+    checkIfPageIsCompleted(): void {
+        const wordCards = Array.from(document.getElementsByClassName('wordCard'));
+        const cards = wordCards.filter((card) => card.classList.contains('difficult') || card.classList.contains('learnt'));
+        if (cards.length === 20 && !this.isDifficultSectionOpened) {
+            document.querySelectorAll('.gameBtn').forEach((btn) => btn.classList.add('disabled'));
+            (document.querySelector('.completedIcon') as HTMLElement).style.display = 'block';
+        } else {
+            document.querySelectorAll('.gameBtn').forEach((btn) => btn.classList.remove('disabled'));
+            (document.querySelector('.completedIcon') as HTMLElement).style.display = 'none';
+        }
+    }
+
+    static playCardSound(event: Event): void {
+        const element = event.target as HTMLElement;
+        const audio = element.dataset.sound;
+
+        if (audio) {
+            new Audio(`${urlAdress}/${audio}`).play();
+        }
+    }
+
+    setPageBackground(): void {
+        const container = document.querySelector('.textbookContainer') as HTMLElement;
+        switch (this.currentGroup) {
+            case 0:
+                container.style.backgroundColor = '#7B7FF1';
+                break;
+            case 1:
+                container.style.backgroundColor = '#7276E0';
+                break;
+            case 2:
+                container.style.backgroundColor = '#6569C7';
+                break;
+            case 3:
+                container.style.backgroundColor = '#5255A1';
+                break;
+            case 4:
+                container.style.backgroundColor = '#313361';
+                break;
+            case 5:
+                container.style.backgroundColor = '#2A1D61';
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 export default Dictionary;
