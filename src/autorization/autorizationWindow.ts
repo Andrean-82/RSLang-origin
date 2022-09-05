@@ -1,6 +1,7 @@
 import { createElement } from '../components/createElement';
 import { hideStatNav, isUserLoggedIn, showStatNav } from '../components/loginUtils';
 import Dictionary from '../pages/dictionary';
+import Main from '../pages/main';
 import { registrationLayout } from './autorizationLayout';
 
 const form = document.querySelector('#logged-user-container') as HTMLElement;
@@ -59,6 +60,7 @@ export const openForm = () => {
             hideStatNav();
             divForEmail.textContent = '';
             openRegFormBtn.classList.remove('test');
+            new Main().openPage();
             localStorage.removeItem('user');
             if (userData?.includes('"logOut":"false"')) {
                 const newstr = userData.replace(/false/i, 'true');
@@ -89,21 +91,23 @@ export const openForm = () => {
 
             const logIn = logInBtn.addEventListener('click', () => {
                 sendData();
-                showStatNav();
+
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
+                        showStatNav();
                     }
-                }, 300);
+                }, 1000);
             });
 
             const signIn = signInBtn.addEventListener('click', async () => {
                 await checkIn();
-                showStatNav();
-                new Dictionary().openPage();
+
+                //new Dictionary().openPage();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
+                        showStatNav();
                     }
                 }, 300);
             });

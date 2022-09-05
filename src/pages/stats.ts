@@ -42,7 +42,7 @@ class Statistics extends Page {
 
             <div id="sprint-stat-container">
                 <h3>
-                    Sprint<img src="./assets/png/sprint.png" alt="sprint" id="sprint-img" width="58">
+                    Sprint<img src="../assets/png/sprint.png" alt="sprint" id="sprint-img" width="58">
                 </h3>
                 <p>new words:<span id="sprint-new-words">0</span></p>
                 <p>correct answers:<span id="sprint-correct-answers">0</span> </p>
