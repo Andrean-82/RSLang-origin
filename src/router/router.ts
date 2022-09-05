@@ -17,7 +17,7 @@ type Pages = 'main' | 'team' | 'games' | 'dictionary' | 'statistics';
 class Router {
     routes: Routes;
     currentPage: Pages;
-    constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics; }) {
+    constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics }) {
         this.routes = routes;
         this.currentPage = 'main';
         loadUser();

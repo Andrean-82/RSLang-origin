@@ -1,4 +1,3 @@
-// import { generateArray } from '../components-game/gameArrayforGetWord';
 import { gameLevel } from '../components-game/gameLevel';
 
 export const clickButtonPlay = () => {
@@ -10,12 +9,10 @@ export const clickButtonPlay = () => {
         if (button === sprint) {
             sessionStorage.setItem('clickPlay', '1');
             gameLevel();
-            //generateArray(20);
         }
         if (button === challenge) {
             sessionStorage.setItem('clickPlay', '2');
             gameLevel();
-            //generateArray();
         }
     };
 };
