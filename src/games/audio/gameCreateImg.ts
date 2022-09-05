@@ -7,7 +7,7 @@ export function imagAnswer(boolenAnswer: string) {
         divForPic.innerHTML = '';
         const img = createElement('img', divForPic, ['img_panda_audio'], {
             ['id']: 'img_panda_audio',
-            ['src']: '../assets/png/angry-panda.png',
+            ['src']: '/src/assets/png/angry-panda.png',
             ['alt']: 'Angry',
         });
     }
@@ -15,7 +15,7 @@ export function imagAnswer(boolenAnswer: string) {
         divForPic.innerHTML = '';
         const img = createElement('img', divForPic, ['img_panda_audio'], {
             ['id']: 'img_panda_audio',
-            ['src']: '../assets/png/free-sticker-panda-7603475.png',
+            ['src']: '/src/assets/png/free-sticker-panda-7603475.png',
             ['alt']: 'Like',
         });
     }

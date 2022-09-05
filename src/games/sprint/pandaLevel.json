@@ -1,8 +1,8 @@
 [ 
-  "./assets/png/panda_three_level.png",  
-  "./assets/png/panda_two_level.png",
-  "./assets/png/panda_one_level.png",
-  "./assets/png/panda_four_level.png",
-  "./assets/png/panda_five_level.png",
-  "./assets/png/panda_six_level.png"
+  "/src/assets/png/panda_three_level.png",  
+  "/src/assets/png/panda_two_level.png",
+  "/src/assets/png/panda_one_level.png",
+  "/src/assets/png/panda_four_level.png",
+  "/src/assets/png/panda_five_level.png",
+  "/src/assets/png/panda_six_level.png"
 ]

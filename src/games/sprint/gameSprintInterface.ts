@@ -20,7 +20,7 @@ export async function sprintGame(arrayObject: []) {
     const mainDiv_1 = createElement('div', main, ['main_div_1'], { ['id']: 'main_div_1' });
     createElement('img', mainDiv_1, ['img_panda_sprint'], {
         ['id']: 'img_panda_sprint',
-        ['src']: '../assets/png/panda_look.jpg',
+        ['src']: '/src/assets/png/panda_look.jpg',
         ['alt']: 'Panda_look',
     });
     const mainDiv_2 = createElement('div', main, ['main_div_2'], { ['id']: 'main_div_2' });

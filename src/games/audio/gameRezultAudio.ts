@@ -37,7 +37,7 @@ export function gameRezultAudio() {
     const pic = audioChallengeRezultScorePic();
     const img = createElement('img', pic, ['img_panda_logo'], {
         ['id']: 'img_panda_logo',
-        ['src']: '../assets/png/pngwing.jpg',
+        ['src']: '/src/assets/png/pngwing.jpg',
         ['alt']: 'Logo',
     });
 }

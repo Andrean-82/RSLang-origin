@@ -41,31 +41,4 @@ export async function audioGame() {
     const arrayNameButton = [oneKey, twoKey, threeKey, fourKey, fiveKey];
     nameBtn(arrayButton, arrayNameButton);
     complecteElementAudioWord();
-    //clickButtonAnswer();
-    //keyButton();
-    // audioPlayLink('1');
-    // const words = sessionStorage.getItem('wordsForAudio') as string;
-    // const objWords = JSON.parse(`${words}`);
-
-    // const main = createElement('div', closeBtn, ['main'], { ['id']: 'main_game_sprint' });
-    // const mainDiv_1 = createElement('div', main, ['main_div_1'], { ['id']: 'main_div_1' });
-    // createElement('img', mainDiv_1, ['img_panda_sprint'], {
-    //     ['id']: 'img_panda_sprint',
-    //     ['src']: '../assets/png/panda_look.jpg',
-    //     ['alt']: 'Panda_look',
-    // });
-    // const mainDiv_2 = createElement('div', main, ['main_div_2'], { ['id']: 'main_div_2' });
-    // createElement('div', mainDiv_2, ['main_div_word_question'], { ['id']: 'main_div_word_question' });
-    // createElement('div', mainDiv_2, ['main_div_word_option'], { ['id']: 'main_div_word_option' });
-    // const footer = createElement('div', closeBtn, ['footer'], { ['id']: 'footer_game_sprint' });
-    // const footerDiv_1 = createElement('div', footer, ['footer_div_1'], { ['id']: 'footer_div_1' });
-    // const footerDiv_2 = createElement('div', footer, ['footer_div_2'], { ['id']: 'footer_div_2' });
-    // createElement('button', footerDiv_1, ['button_false'], {
-    //     ['id']: 'button_false',
-    // }).textContent = 'NO';
-    // createElement('button', footerDiv_2, ['button_true'], {
-    //     ['id']: 'button_true',
-    // }).textContent = 'YES';
-    // clickButtonNoYes();
-    // getWordsinGemeSprint(arrayObject);
 }

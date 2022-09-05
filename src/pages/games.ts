@@ -10,7 +10,7 @@ class Games extends Page {
         const pageHtml = `
         <div class="gamesPageContainer">
           <div class="gameCard">
-            <img src="../assets/png/sprint.png"></img>
+            <img src="/src/assets/png/sprint.png"></img>
             <div><b>Sprint</b></div>
             <div class="gameDescription">
               You have one minute to guess as many words as you can!
@@ -19,7 +19,7 @@ class Games extends Page {
           </div>
   
           <div class="gameCard">
-            <img src="../assets/png/audio.png"></img>
+            <img src="/src/assets/png/audio.png"></img>
             <div><b>Audio Challenge</b></div>
             <div class="gameDescription">
               Listen to words and choose their translation!
