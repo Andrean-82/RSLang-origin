@@ -27,10 +27,5 @@ export async function getAggregatedWords(groupNumber: number, pageNumber: number
     });
     const words = await response.json();
     console.log(words[0].paginatedResults);
-
-
-
-
-    
     return words[0].paginatedResults;
 }
