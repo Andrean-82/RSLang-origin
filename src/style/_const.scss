@@ -3,22 +3,37 @@ $size-h1: 35px;
 $size-p: 16px;
 
 //text color
+//<<<<<<< HEAD
+$color-h1:#1010dd;
+$color-p:#1010dd;
+$color-h3:rgb(250, 250, 187);
+//=======
 $color-h1: #000000;
 $color-correct-answer: #078528;
 $color-incorrect-answer: #ff1919;
 
+$background-reg-div: #ffe474;
 
-
+//>>>>>>> develop
 
 // wigth
 $wigth-wrapper: 75rem;
 
 // background-color
+//<<<<<<< HEAD
+$background-dark: #211F20;
+$background-footer:#ddf80d;
+$background-header:#1fe768;
+$background-main: #413d93;
+$background-gameSprint:rgb(250, 250, 187);
+
+// =======
 $color-header: #58dba6;
 $background-main: #ffffff;
 $color-active: #ffbb33;
 $color-little-window: #fffec2;
 $color-little-window-1: #595ED6;
+// >>>>>>> develop
 
 //fill
 $background-fill: url('../img/png/panda_main.png');
