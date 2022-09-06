@@ -4,10 +4,7 @@ import { gameSprintAddColor } from './gameSprintCreateDivColor';
 import { gameSprintAddYN } from './gameSprintCreateDivYN';
 
 export function sprintGameResult() {
-    let count = sessionStorage.getItem('count');
-    if (count === null) {
-        count = '0';
-    }
+    const count = sessionStorage.getItem('count');
     const closeBtn = <HTMLElement>document.querySelector('.close_btn');
     closeBtn.innerHTML = '';
     closeBtn.classList.toggle('wrapper_game_sptint_result');
@@ -23,15 +20,14 @@ export function sprintGameResult() {
     const formResult3 = createElement('div', blokForResult, ['form_result_3'], { ['id']: 'form_result_3' });
     const houmePage = createElement('div', formResult3, ['houme_btn'], { ['id']: 'houme_btn' });
     createElement('img', houmePage, ['img_houme_page'], {
-        ['src']: './assets/png/home.png',
+        ['src']: '../assets/png/home.png',
         ['alt']: 'Houme',
     });
     const repetPage = createElement('div', formResult3, ['repeat_btn'], { ['id']: 'repeat_btn' });
     createElement('img', repetPage, ['img_houme_page'], {
-        ['src']: './assets/png/repeat.png',
+        ['src']: '../assets/png/repeat.png',
         ['alt']: 'Repeat',
     });
     const rezervePage = createElement('div', formResult3, ['rezerve_btn'], { ['id']: 'rezerve_btn' });
     rezervePage.textContent = 'X';
-    sessionStorage.clear();
 }

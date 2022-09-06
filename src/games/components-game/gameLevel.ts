@@ -10,6 +10,7 @@ export function gameLevel() {
     const container = <HTMLElement>document.querySelector('.content-container');
     const clickPlay = sessionStorage.getItem('clickPlay');
     app.innerHTML = '';
+    app.className = '';
     app.classList.toggle('close_btn');
     if (clickPlay === '1') {
         const forGameSprint = <HTMLElement>document.getElementById('app');
