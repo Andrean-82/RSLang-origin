@@ -3,11 +3,13 @@ header {
     min-height: 5vh;
     position: relative;
     background:#ffbb33;
+    cursor: pointer;
     #logged-user-container {
         display: flex;
         position: absolute;
         border: none;
         right: 0;
+        cursor: pointer;
       }
     #page-title {
         position: relative;

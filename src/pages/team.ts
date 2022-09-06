@@ -19,7 +19,7 @@ class Team extends Page {
             </div>
             <div class="teamDescription">
               Developer. 
-              <br/>"For two weeks I tried to understand what to do"
+              <br/>"Don't shoot the pianist, he's doing his best!"
             </div>
           </div>
 
@@ -31,6 +31,7 @@ class Team extends Page {
             </div>
             <div class="teamDescription">
             Developer, team lead.
+            <br/>"We are very strong team!"
             </div>
           </div>
     
@@ -41,7 +42,8 @@ class Team extends Page {
               <span><a class="link-github" href="https://github.com/SPECTRA995">Maksim</a></span>
             </div>
             <div class="teamDescription">
-              Was responsible for: Developer.
+              Developer.
+              <br/>"Fall down seven times, stand up eight."
             </div>
           </div>
     

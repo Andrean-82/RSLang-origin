@@ -4,6 +4,7 @@ import { addPageTitle } from '../components/createTitle';
 import Page from './page';
 import { markWordAsDifficult, markWordAsLearned, unmarkWordAsDifficult, unmarkWordAsLearned } from '../api/userWordsApi';
 import { isUserLoggedIn } from '../components/loginUtils';
+import { gameLevel } from '../games/components-game/gameLevel';
 
 class Dictionary extends Page {
     currentPage: number;
@@ -25,22 +26,39 @@ class Dictionary extends Page {
         this.renderPageElements();
         this.renderPageContent();
         addPageTitle(this.name);
+        this.clickButtonPlay();
         if (!this.isHandlersInited) {
             this.initHandlers();
         }
     }
-
+    clickButtonPlay() {
+        (document.querySelector('.gamesContainer') as HTMLElement).onclick = async function (event) {
+            const button = event.target;
+            sessionStorage.setItem('buttonChioce', `${button}`);
+            const sprint = <HTMLElement>document.querySelector('.sprint');
+            const challenge = <HTMLElement>document.querySelector('.challenge');
+            console.log(challenge);
+            if (button === sprint) {
+                sessionStorage.setItem('clickPlay', '1');
+                gameLevel();
+            }
+            if (event.target === challenge) {
+                sessionStorage.setItem('clickPlay', '2');
+                gameLevel();
+            }
+        };
+    }
     renderPageElements(): void {
         const isHidden = isUserLoggedIn() ? '' : 'hidden';
         const pageHtml = `
     <div class="textbookContainer">
       <div class="gamesContainer">
         <div class="gameBtn" data-game="sprint">
-        <img class="gameLogo" src="../assets/png/sprint.png" data-game="sprint"></img>
+        <img class="gameLogo sprint" src="../assets/png/sprint.png" data-game="sprint"></img>
           <div data-game="sprint">Sprint</div>
         </div>
         <div class="gameBtn" data-game="challenge">
-        <img class="gameLogo" src="../assets/png/audio.png" data-game="challenge"></img>
+        <img class="gameLogo challenge" src="../assets/png/audio.png" data-game="challenge"></img>
           <div data-game="challenge">Audio Challenge</div>
         </div>
         <img src="../assets/png/completed.png" class="completedIcon"></img>

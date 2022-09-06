@@ -1,6 +1,7 @@
 import { createElement } from '../components/createElement';
 import { hideStatNav, isUserLoggedIn, showStatNav } from '../components/loginUtils';
 import Dictionary from '../pages/dictionary';
+import Main from '../pages/main';
 import { registrationLayout } from './autorizationLayout';
 
 const form = document.querySelector('#logged-user-container') as HTMLElement;
@@ -46,6 +47,11 @@ export const openForm = () => {
         new Dictionary().openPage();
     }
     const clearBtn = openRegFormBtn.addEventListener('click', () => {
+        if (isUserLoggedIn()) {
+            hideStatNav(); //убираю статистику иконку
+            localStorage.removeItem('user'); //очищает локал сторидж
+            new Dictionary().openPage();
+        }
         if (openRegFormBtn.textContent !== 'SIGN IN') {
             openRegFormBtn.textContent = 'SIGN IN';
             hideStatNav();
@@ -79,6 +85,7 @@ export const openForm = () => {
             const logIn = logInBtn.addEventListener('click', () => {
                 sendData();
                 showStatNav();
+                new Main().openPage();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
@@ -88,7 +95,7 @@ export const openForm = () => {
             const signIn = signInBtn.addEventListener('click', async () => {
                 await checkIn();
                 showStatNav();
-                new Dictionary().openPage();
+                new Main().openPage();
                 setTimeout(() => {
                     if (infoDiv.textContent === '' || infoDiv.textContent === `Welcome ${layout.childNodes[1].childNodes[5].childNodes[1].textContent}!`) {
                         openRegFormBtn.classList.add('test');
@@ -149,6 +156,7 @@ export const authenticator = async (email: string, password: string) => {
                     isOpenForm = false;
                 }
             }, 2000);
+            localStorage.setItem('user', JSON.stringify(content));
         });
 };
 export const sendData = () => {
