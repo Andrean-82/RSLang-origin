@@ -4,7 +4,6 @@ import { NumberAttempt } from '../components-game/interface';
 export const clickButtonPlay = () => {
     (document.querySelector('.gamesPageContainer') as HTMLElement).addEventListener('click', (event) => {
         const button = event.target;
-        console.log(button);
         //sessionStorage.setItem('buttonChioce', `${button}`);
         const sprint = <HTMLElement>document.querySelector('.sprint');
         const challenge = <HTMLElement>document.querySelector('.challenge');

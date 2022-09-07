@@ -28,5 +28,3 @@ export const clickButtonSprint = (event: Event) => {
         complecteElementSprint(Five);
     }
 };
-// const sprintGameLest = <HTMLElement>document.querySelector('.sprint_challenge');
-// sprintGameLest.addEventListener('click', clickButtonSprint);

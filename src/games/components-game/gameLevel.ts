@@ -14,7 +14,7 @@ export function gameLevel() {
     NumberAttempt.countTrueAnswer = 0;
     NumberAttempt.countFalseAnswer = 0;
     const whatLevel = 6;
-    console.log(NumberAttempt.clickPlay);
+
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const imgLevelOne = require('../sprint/pandaLevel.json');
     const app = <HTMLElement>document.getElementById('app');
@@ -24,15 +24,12 @@ export function gameLevel() {
     app.className = '';
     app.classList.toggle('close_btn');
     if (NumberAttempt.clickPlay === 1) {
-        console.log('TROLOLO_1');
         const forGameSprint = <HTMLElement>document.getElementById('app');
         forGameSprint.classList.toggle('sprint_challenge');
         const sprintGameLest = <HTMLElement>document.querySelector('.sprint_challenge');
         sprintGameLest.addEventListener('click', clickButtonSprint);
-        // clickButtonSprint();
     }
     if (NumberAttempt.clickPlay === 2) {
-        console.log('lylyly_1');
         const forGameAudio = <HTMLElement>document.getElementById('app');
         forGameAudio.classList.toggle('audio_challenge');
         const audioGameLest = <HTMLElement>document.querySelector('.audio_challenge');
