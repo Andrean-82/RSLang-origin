@@ -5,6 +5,7 @@ import { getWordsinGemeSprint } from './gemeSprintGetWords';
 
 export async function sprintGame(arrayObject: []) {
     const closeBtn = <HTMLElement>document.querySelector('.close_btn');
+    closeBtn.innerHTML = '';
     closeBtn.classList.toggle('close_btn_sprint_interfece');
     const header = createElement('div', closeBtn, ['header_game_sprint'], { ['id']: 'header_game_sprint' });
     const headerDiv_1 = createElement('div', header, ['header_div_1'], { ['id']: 'header_div_1' });
@@ -20,7 +21,7 @@ export async function sprintGame(arrayObject: []) {
     const mainDiv_1 = createElement('div', main, ['main_div_1'], { ['id']: 'main_div_1' });
     createElement('img', mainDiv_1, ['img_panda_sprint'], {
         ['id']: 'img_panda_sprint',
-        ['src']: '/src/assets/png/panda_look.jpg',
+        ['src']: '../assets/png/panda_look.jpg',
         ['alt']: 'Panda_look',
     });
     const mainDiv_2 = createElement('div', main, ['main_div_2'], { ['id']: 'main_div_2' });
@@ -29,13 +30,17 @@ export async function sprintGame(arrayObject: []) {
     const footer = createElement('div', closeBtn, ['footer'], { ['id']: 'footer_game_sprint' });
     const footerDiv_1 = createElement('div', footer, ['footer_div_1'], { ['id']: 'footer_div_1' });
     const footerDiv_2 = createElement('div', footer, ['footer_div_2'], { ['id']: 'footer_div_2' });
-    createElement('button', footerDiv_1, ['button_false'], {
+    const buttonFalse = createElement('button', footerDiv_1, ['button_false'], {
         ['id']: 'button_false',
-    }).textContent = 'NO';
-    createElement('button', footerDiv_2, ['button_true'], {
+    });
+    buttonFalse.textContent = 'NO';
+    const buttonTrue = createElement('button', footerDiv_2, ['button_true'], {
         ['id']: 'button_true',
-    }).textContent = 'YES';
-    clickButtonNoYes();
+    });
+    buttonTrue.textContent = 'YES';
+
+    buttonFalse.addEventListener('click', clickButtonNoYes);
+    buttonTrue.addEventListener('click', clickButtonNoYes);
     getWordsinGemeSprint(arrayObject);
     const times = wrapperTime(pForTime);
     const interval = setInterval(times, 1000);

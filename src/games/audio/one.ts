@@ -3,8 +3,9 @@ import { parseJsonFile } from '../../components/parseJson';
 import { blokFive, blokFour, blokOne, blokThree, blokTwo } from '../components-game/constants';
 import { generateArray } from '../components-game/gameArrayforGetWord';
 import { copySorted } from '../components-game/gameSotrArray';
+import { NumberAttempt } from '../components-game/interface';
 import { randomPage } from '../sprint/gemeSprintGetWords';
-import { countLifeScore } from './gameAudioLives';
+// import { countLifeScore } from './gameAudioLives';
 import { audioPlayLink } from './gameAudioPlayLink';
 import { gameRezultAudio } from './gameRezultAudio';
 import { wrapperEvent } from './wrapperEventListener';
@@ -36,7 +37,7 @@ export async function complecteElementAudioWord() {
         audioPlayLink(words[indexForAudio].audio);
         wrapperEvent(indexForAudio, arrayAudioIndex);
     } catch {
-        if (countLifeScore > 0) {
+        if (NumberAttempt.countLifeScore > 0) {
             complecteElementAudioWord();
         } else {
             gameRezultAudio();

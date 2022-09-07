@@ -1,6 +1,6 @@
-.container{
-  background: url('./assets/png/bambuk_1.jpg');
-}
+// .container{
+//   background: url('./assets/png/bambuk_1.jpg');
+// }
 #wrapper_sprint_game{
   padding-top: 20px;
   display: flex;
@@ -192,6 +192,7 @@
       .td_wrapper_true{
         display: grid;
         grid-template-columns: 0.5fr;
+        flex-direction: column-reverse;
         border-bottom-style: dotted;
         border-bottom-width: 3px;
         border-bottom-color: rgb(220, 213, 213);

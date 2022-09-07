@@ -2,7 +2,7 @@ import { grupeFive, grupeFour, grupeOne, grupeThree, grupeTwo, grupeZero } from 
 import { complecteElementSprint } from '../components-game/gameComplecteForClickLevel';
 
 export const clickButtonSprint = () => {
-    (document.querySelector('.sprint_challenge') as HTMLElement).onclick = async function (event) {
+    (document.querySelector('.sprint_challenge') as HTMLElement).addEventListener('click', (event) => {
         const button = event.target;
         const Zero = grupeZero();
         const One = grupeOne();
@@ -28,5 +28,5 @@ export const clickButtonSprint = () => {
         if (button === Five) {
             complecteElementSprint(Five);
         }
-    };
+    });
 };

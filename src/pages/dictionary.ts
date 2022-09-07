@@ -36,14 +36,14 @@ class Dictionary extends Page {
     <div class="textbookContainer">
       <div class="gamesContainer">
         <div class="gameBtn" data-game="sprint">
-        <img class="gameLogo" src="/src/assets/png/sprint.png" data-game="sprint"></img>
+        <img class="gameLogo" src="../assets/png/sprint.png" data-game="sprint"></img>
           <div data-game="sprint">Sprint</div>
         </div>
         <div class="gameBtn" data-game="challenge">
-        <img class="gameLogo" src="/src/assets/png/audio.png" data-game="challenge"></img>
+        <img class="gameLogo" src="../assets/png/audio.png" data-game="challenge"></img>
           <div data-game="challenge">Audio Challenge</div>
         </div>
-        <img src="/src/assets/png/completed.png" class="completedIcon"></img>
+        <img src="../assets/png/completed.png" class="completedIcon"></img>
       </div>
 
       <div class="pageSelector">
@@ -56,12 +56,12 @@ class Dictionary extends Page {
         <div id="content"></div>
 
         <div class="groupSelector">
-        <img class="groupCircle" data-group="0" src="/src/assets/main_pandas/3.png" width="40" >
-        <img class="groupCircle" data-group="1" src="/src/assets/main_pandas/7.png" width="40" >
-        <img class="groupCircle" data-group="2" src="/src/assets/main_pandas/9.png" width="40" >
-        <img class="groupCircle" data-group="3" src="/src/assets/main_pandas/13.png" width="40" >
-        <img class="groupCircle" data-group="4" src="/src/assets/main_pandas/14.png" width="40" >
-        <img class="groupCircle" data-group="5" src="/src/assets/main_pandas/15.png" width="40" >
+        <img class="groupCircle" data-group="0" src="../assets/main_pandas/3.png" width="40" >
+        <img class="groupCircle" data-group="1" src="../assets/main_pandas/7.png" width="40" >
+        <img class="groupCircle" data-group="2" src="../assets/main_pandas/9.png" width="40" >
+        <img class="groupCircle" data-group="3" src="../assets/main_pandas/13.png" width="40" >
+        <img class="groupCircle" data-group="4" src="../assets/main_pandas/14.png" width="40" >
+        <img class="groupCircle" data-group="5" src="../assets/main_pandas/15.png" width="40" >
       </div>
 
         <div class="onlyDifficultToggle ${isHidden}">
@@ -74,6 +74,7 @@ class Dictionary extends Page {
 
     </div>
   `;
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
     }
 
