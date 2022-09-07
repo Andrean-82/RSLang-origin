@@ -104,13 +104,21 @@
 }
 
 #logged-user-container {
+    cursor: pointer;
     .test{
         &:after{
             position: absolute;
             content: '\e879';
             font-family: "Material Icons";
             font-size: 32px;
+            cursor: pointer;
         }
+    }
+    &:hover{
+        background: #fb3;
+        box-shadow: 0 0 0 3px rgb(254, 226, 187);
+        cursor: pointer;
+        animation: bounce 1s;
     }
 }
 
@@ -121,3 +129,20 @@
     right: 8rem;
     top: 1.2rem;
 }
+
+@keyframes bounce {
+    0%, 20%, 60%, 100% {
+      transform: translateY(0px);
+      transform: translateY(0px);
+    }
+  
+    40% {
+      transform: translateY(20px);
+      transform: translateY(20px);
+    }
+  
+    80% {
+      transform: translateY(20px);
+      transform: translateY(20px);
+    }
+  }
