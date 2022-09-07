@@ -213,9 +213,18 @@ class Dictionary extends Page {
     static playCardSound(event: Event): void {
         const element = event.target as HTMLElement;
         const audio = element.dataset.sound;
-
+        const audiox = element.dataset.soundx;
+        const audioe = element.dataset.sounde;
         if (audio) {
             new Audio(`${urlAdress}/${audio}`).play();
+        }
+
+        if (audiox) {
+            new Audio(`${urlAdress}/${audiox}`).play();
+        }
+
+        if (audioe) {
+            new Audio(`${urlAdress}/${audioe}`).play();
         }
     }
 

@@ -17,11 +17,13 @@ type Pages = 'main' | 'team' | 'games' | 'dictionary' | 'statistics';
 class Router {
     routes: Routes;
     currentPage: Pages;
+    lastPage: Pages;
     constructor(routes: { main: Main; team: Team; games: Games; dictionary: Dictionary; statistics: Statistics }) {
         this.routes = routes;
-        this.currentPage = 'main';
+        this.lastPage = localStorage.getItem('page') as Pages;
+        this.currentPage = this.lastPage || 'main';
         loadUser();
-        this.routes.main.openPage();
+        this.routes[this.currentPage].openPage();
     }
     init(): void {
         document.addEventListener('click', this.openPage.bind(this));
@@ -31,18 +33,10 @@ class Router {
         const element = event.target as HTMLElement;
         const selectedPage = element.dataset.page as Pages;
         if (selectedPage) {
-            window.history.pushState('', '', `/${selectedPage}`);
             this.routes[selectedPage].openPage();
             this.currentPage = selectedPage;
+            localStorage.setItem('page', `${selectedPage}`);
         }
-    }
-    openSelectedPage(page: string): void {
-        window.history.pushState('', '', `/${page}`);
-        this.routes[page as Pages].openPage();
-        this.currentPage = page as Pages;
-    }
-    refreshCurrentPage(): void {
-        this.routes[this.currentPage].openPage();
     }
 }
 export default Router;
