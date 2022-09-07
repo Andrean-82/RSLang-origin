@@ -10,10 +10,11 @@ class Main extends Page {
     }
 
     openPage(): void {
+        this.appContainer.className = '';
         const pageHtml = `
       <div class="mainPageContainer">
-        <h1>Welcome to RS Lang </h1>  
-        <img src="/src/assets/png/panda_main.png" alt="logo" width="160">
+        <h1>Welcome to Panda Lang </h1>  
+        <img src="../assets/png/panda_main.png" alt="logo" width="160">
         <div class="tittle_text">
           Learn more than 3500 new English words with <b>Panda</b>! <BR/>
         <br/>
@@ -25,7 +26,7 @@ class Main extends Page {
         </div>
         <div class="gamesPageContainer">
           <div class="gameCard">
-            <img src="/src/assets/png/sprint.png"></img>
+            <img src="../assets/png/sprint.png"></img>
             <div><b>Sprint</b></div>
             <div class="gameDescription">
               You have one minute to guess as many words as you can!
@@ -33,7 +34,7 @@ class Main extends Page {
           </div>
   
           <div class="gameCard">
-            <img src="/src/assets/png/audio.png"></img>
+            <img src="../assets/png/audio.png"></img>
             <div><b>Audio Challenge</b></div>
             <div class="gameDescription">
               Listen to words and choose their translation!
@@ -46,7 +47,7 @@ class Main extends Page {
           Logged users received access to game statistics for each word card, as well as the possibility for
           marking each word as Learned or Difficult.
         </div>
-        <img src="/src/assets/png/library.jpg" alt="Dictionary" width="500px">
+        <img src="../assets/png/library.jpg" alt="Dictionary" width="500px">
         <h2>Statistics</h2>
         <div class="main_text">
           Track you progress using the Statistics section.

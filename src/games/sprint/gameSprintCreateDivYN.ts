@@ -1,8 +1,8 @@
 import { createElement } from '../../components/createElement';
-import { parseJsonFile } from '../../components/parseJson';
+import { Stor } from '../components-game/interface';
 
 export function gameSprintAddYN() {
-    const arrayCorrect = parseJsonFile('arrayAnsver');
+    const arrayCorrect = Stor.ansver;
     const formRezult2 = <HTMLElement>document.getElementById('form_result_2');
     const tdWrapper = createElement('div', formRezult2, ['td_wrapper'], { ['id']: 'td_wrapper' });
     arrayCorrect.forEach((elem: string) => {
