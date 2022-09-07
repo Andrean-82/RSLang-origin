@@ -52,7 +52,7 @@ class Statistics extends Page {
     </div>
 </div>
 </div>`;
-
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
     }

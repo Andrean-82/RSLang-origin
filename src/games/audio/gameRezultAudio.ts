@@ -9,12 +9,12 @@ import {
     audioChallengeRezultTrue,
 } from '../components-game/constants';
 import { menyDiv } from '../components-game/gameMenyDiv';
-import { countAnswerScore, countFalseAnswer, countTrueAnswer } from './gameAudioScore';
+import { NumberAttempt } from '../components-game/interface';
 
 export function gameRezultAudio() {
     const app = audioChallenge();
     app.innerHTML = '';
-    const wrapperScore = (createElement('div', app, ['wrapper_score']).textContent = `YOURE SCORE: ${countAnswerScore}`);
+    const wrapperScore = (createElement('div', app, ['wrapper_score']).textContent = `YOURE SCORE: ${NumberAttempt.countAnswerScore}`);
     const wrapperRezult = createElement('div', app, ['wrapper_rezult_audio']);
     const oneBlok = createElement('div', wrapperRezult, ['one_rezult']);
     const twoBlok = createElement('div', wrapperRezult, ['two_rezult']);
@@ -31,13 +31,14 @@ export function gameRezultAudio() {
     falseAnswer.innerHTML = 'Wrong answers';
     learnWords.innerHTML = 'Learn words today';
     const trueScore = audioChallengeRezultScore();
-    trueScore.innerHTML = `${countTrueAnswer}`;
+    trueScore.innerHTML = `${NumberAttempt.countTrueAnswer}`;
     const falseScore = audioChallengeRezultScoreFalse();
-    falseScore.innerHTML = `${countFalseAnswer}`;
+    falseScore.innerHTML = `${NumberAttempt.countFalseAnswer}`;
     const pic = audioChallengeRezultScorePic();
     const img = createElement('img', pic, ['img_panda_logo'], {
         ['id']: 'img_panda_logo',
         ['src']: '../assets/png/pngwing.jpg',
         ['alt']: 'Logo',
     });
+    sessionStorage.clear();
 }

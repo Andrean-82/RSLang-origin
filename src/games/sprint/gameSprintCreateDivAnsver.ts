@@ -1,8 +1,8 @@
 import { createElement } from '../../components/createElement';
-import { parseJsonFile } from '../../components/parseJson';
+import { Stor } from '../components-game/interface';
 
 export function gameSprintAddAnsver() {
-    let allWordAfterGameModif = parseJsonFile('wordForRezult');
+    const allWordAfterGameModif = Stor.divQuestionWord;
     const formRezult2 = <HTMLElement>document.getElementById('form_result_2');
     const tdWrapperAnsver = createElement('div', formRezult2, ['tbody_result'], { ['id']: 'tbody_result' });
     allWordAfterGameModif.forEach((elem: Array<string>) => {
@@ -14,5 +14,4 @@ export function gameSprintAddAnsver() {
         const tranclateWord = createElement('div', wrapperRezult, ['translate_word'], { ['id']: 'translate_word' });
         tranclateWord.textContent = elem[1].toUpperCase();
     });
-    allWordAfterGameModif = [];
 }

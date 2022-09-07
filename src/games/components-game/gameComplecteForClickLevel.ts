@@ -9,8 +9,7 @@ export async function complecteElementSprint(Element: HTMLElement) {
     const grupe = Number(Element.textContent) - 1;
     closeBtn.innerHTML = '';
     const words = await getWords(grupe, page);
-    sprintGame(words.sort(() => Math.random() - 0.5));
-    return words;
+    sprintGame(words); //.sort(() => Math.random() - 0.5)
 }
 export async function complecteElementAudio(Element: HTMLElement) {
     const closeBtn = <HTMLElement>document.querySelector('.close_btn');

@@ -74,6 +74,7 @@ class Dictionary extends Page {
 
     </div>
   `;
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
     }
 

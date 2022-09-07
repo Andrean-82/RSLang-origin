@@ -10,6 +10,7 @@ class Main extends Page {
     }
 
     openPage(): void {
+        this.appContainer.className = '';
         const pageHtml = `
       <div class="mainPageContainer">
         <h1>Welcome to Panda Lang </h1>  

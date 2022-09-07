@@ -28,6 +28,7 @@ class Games extends Page {
           </div>
         </div>
     `;
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
         clickButtonPlay();
