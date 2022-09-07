@@ -20,6 +20,7 @@ interface INumberAttempt {
     countAnswerScore: number;
     countTrueAnswer: number;
     countFalseAnswer: number;
+    clickPlay: number;
 }
 export const NumberAttempt: INumberAttempt = {
     countWord: 19,
@@ -28,4 +29,5 @@ export const NumberAttempt: INumberAttempt = {
     countAnswerScore: 0,
     countTrueAnswer: 0,
     countFalseAnswer: 0,
+    clickPlay: 0,
 };

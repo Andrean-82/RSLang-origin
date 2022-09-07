@@ -17,5 +17,4 @@ export async function complecteElementAudio(Element: HTMLElement) {
     sessionStorage.setItem('grupe', `${grupe}`);
     closeBtn.innerHTML = '';
     audioGame();
-    return grupe;
 }
