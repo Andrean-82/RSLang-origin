@@ -7,6 +7,7 @@ import { isUserLoggedIn } from '../components/loginUtils';
 import { gameLevel } from '../games/components-game/gameLevel';
 import { clickButtonSprint } from '../games/sprint/clickEventListenerSprint';
 import { clickButtonAudio } from '../games/audio/clickEventListenerAudio';
+import { NumberAttempt } from '../games/components-game/interface';
 
 class Dictionary extends Page {
     currentPage: number;
@@ -41,11 +42,11 @@ class Dictionary extends Page {
             const challenge = <HTMLElement>document.querySelector('.challenge');
             console.log(challenge);
             if (button === sprint) {
-                sessionStorage.setItem('clickPlay', '1');
+                NumberAttempt.clickPlay = 1;
                 gameLevel();
             }
             if (event.target === challenge) {
-                sessionStorage.setItem('clickPlay', '2');
+                NumberAttempt.clickPlay = 2;
                 gameLevel();
             }
         };
@@ -61,7 +62,7 @@ class Dictionary extends Page {
         </div>
         <div class="gameBtn" data-game="challenge">
         <img class="gameLogo challenge" src="../assets/png/audio.png" data-game="challenge"></img>
-          <div data-game="challenge">Audio Challenge</div>
+          <div data-game="challenge">Audio</div>
         </div>
         <img src="../assets/png/completed.png" class="completedIcon"></img>
       </div>
