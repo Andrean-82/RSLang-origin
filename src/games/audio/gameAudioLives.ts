@@ -7,12 +7,13 @@ NumberAttempt.countLifeScore;
 
 export const countLife = (trable: string) => {
     NumberAttempt.countLifeScore -= 1;
-    if (NumberAttempt.countLifeScore > 0) {
+    console.log(`Before : ${NumberAttempt.countLifeScore}`);
+    if (NumberAttempt.countLifeScore >= 0) {
         if (trable === 'false') {
             imagAnswer('false');
         }
     }
-    if (NumberAttempt.countLifeScore === 0) {
+    if (NumberAttempt.countLifeScore < 0) {
         gameRezultAudio();
     }
 };

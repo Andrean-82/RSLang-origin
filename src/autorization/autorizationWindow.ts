@@ -20,6 +20,11 @@ export let personID: string;
 
 export const openForm = () => {
     //localStorage.clear();
+    for (let i = 0; i < localStorage.length; i++) {
+        console.log(localStorage.key(i), localStorage.getItem(`${localStorage.key(i)}`));
+        ////names/////names/////names////
+        //console.log('localStorage.key(i)"s', localStorage.key(i));
+    }
     const userData = localStorage.getItem('user');
     if (userData?.includes('"logOut":"false"') && userData?.includes('"email"')) {
         if (userData.length > 299) {

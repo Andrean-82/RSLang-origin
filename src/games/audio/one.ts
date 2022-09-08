@@ -39,8 +39,10 @@ export async function complecteElementAudioWord() {
     } catch {
         if (NumberAttempt.countLifeScore > 0) {
             complecteElementAudioWord();
-        } else {
-            gameRezultAudio();
         }
+        // else {
+        //     console.log('NumberAttempt.countLifeScore < 0');
+        //     gameRezultAudio();
+        // }
     }
 }
