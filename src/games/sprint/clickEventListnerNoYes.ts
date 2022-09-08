@@ -1,5 +1,5 @@
 import { parseJsonFile } from '../../components/parseJson';
-import { NumberAttempt, Stor } from '../components-game/interface';
+import { NumberAttempt, sprintStore, Stor } from '../components-game/interface';
 import { sprintGameResult } from './gameSprintResult';
 import { getWordsinGemeSprint } from './gemeSprintGetWords';
 
@@ -19,6 +19,7 @@ export function clickButtonNoYes(event: Event) {
     const score = <HTMLElement>document.getElementById('score_sprint');
     const buttonFalse = <HTMLButtonElement>document.getElementById('button_false');
     const buttonTrue = <HTMLButtonElement>document.getElementById('button_true');
+    sprintStore.newWords++;
     try {
         if (arrayNumber[i][j] != arrayNumber[i][k] && button === buttonFalse) {
             NumberAttempt.count += 10;
@@ -26,11 +27,18 @@ export function clickButtonNoYes(event: Event) {
             Stor.arrayColor.push('white');
             const getmodify = parseJsonFile('modifyArray');
             getWordsinGemeSprint(getmodify);
+            sprintStore.incorrectAnswers++;
+            sprintStore.correctAnswersStreak = 0;
         }
         if (arrayNumber[i][j] === arrayNumber[i][k] && button === buttonFalse) {
             Stor.arrayColor.push('black');
             const getmodify = parseJsonFile('modifyArray');
             getWordsinGemeSprint(getmodify);
+            sprintStore.correctAnswers++;
+            sprintStore.correctAnswersStreak++;
+            if (sprintStore.correctAnswersStreak > sprintStore.maxCorrectAnswerStreak) {
+                sprintStore.maxCorrectAnswerStreak = sprintStore.correctAnswersStreak;
+            }
         }
         if (arrayNumber[i][j] === arrayNumber[i][k] && button === buttonTrue) {
             NumberAttempt.count += 10;
@@ -38,11 +46,18 @@ export function clickButtonNoYes(event: Event) {
             Stor.arrayColor.push('white');
             const getmodify = parseJsonFile('modifyArray');
             getWordsinGemeSprint(getmodify);
+            sprintStore.incorrectAnswers++;
+            sprintStore.correctAnswersStreak = 0;
         }
         if (arrayNumber[i][j] != arrayNumber[i][k] && button === buttonTrue) {
             Stor.arrayColor.push('black');
             const getmodify = parseJsonFile('modifyArray');
             getWordsinGemeSprint(getmodify);
+            sprintStore.correctAnswers++;
+            sprintStore.correctAnswersStreak++;
+            if (sprintStore.correctAnswersStreak > sprintStore.maxCorrectAnswerStreak) {
+                sprintStore.maxCorrectAnswerStreak = sprintStore.correctAnswersStreak;
+            }
         }
         i++;
     } catch {

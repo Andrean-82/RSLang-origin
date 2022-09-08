@@ -1,10 +1,12 @@
+import { getStatistic, updateStatistic } from '../../api/stat';
 import { createElement } from '../../components/createElement';
-import { NumberAttempt } from '../components-game/interface';
+import { getCurrentUser } from '../../components/loginUtils';
+import { NumberAttempt, sprintStore } from '../components-game/interface';
 import { gameSprintAddAnsver } from './gameSprintCreateDivAnsver';
 import { gameSprintAddColor } from './gameSprintCreateDivColor';
 import { gameSprintAddYN } from './gameSprintCreateDivYN';
 
-export function sprintGameResult() {
+export async function sprintGameResult() {
     if (NumberAttempt.count === null) {
         NumberAttempt.count = 0;
     }
@@ -21,4 +23,14 @@ export function sprintGameResult() {
     gameSprintAddYN();
     gameSprintAddColor();
     sessionStorage.clear();
+    if (getCurrentUser()) {
+        const stat = await getStatistic();
+        stat.optional.day.sprint.correctAnswersCount += sprintStore.correctAnswers;
+        stat.optional.day.sprint.incorrectAnswersCount += sprintStore.incorrectAnswers;
+        stat.optional.day.sprint.countNewWords += sprintStore.newWords;
+        if (stat.optional.day.sprint.correctAnswersSeriesLength < sprintStore.maxCorrectAnswerStreak) {
+            stat.optional.day.sprint.correctAnswersSeriesLength = sprintStore.maxCorrectAnswerStreak;
+        }
+        updateStatistic(stat);
+    }
 }

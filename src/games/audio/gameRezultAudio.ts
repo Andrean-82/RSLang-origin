@@ -1,4 +1,6 @@
+import { getStatistic, updateStatistic } from '../../api/stat';
 import { createElement } from '../../components/createElement';
+import { getCurrentUser } from '../../components/loginUtils';
 import {
     audioChallenge,
     audioChallengeRezultFalse,
@@ -9,9 +11,9 @@ import {
     audioChallengeRezultTrue,
 } from '../components-game/constants';
 import { menyDiv } from '../components-game/gameMenyDiv';
-import { NumberAttempt } from '../components-game/interface';
+import { audioStore, NumberAttempt } from '../components-game/interface';
 
-export function gameRezultAudio() {
+export async function gameRezultAudio() {
     const app = audioChallenge();
     app.innerHTML = '';
     const wrapperScore = (createElement('div', app, ['wrapper_score']).textContent = `YOURE SCORE: ${NumberAttempt.countAnswerScore}`);
@@ -41,4 +43,15 @@ export function gameRezultAudio() {
         ['alt']: 'Logo',
     });
     sessionStorage.clear();
+    if (getCurrentUser()) {
+        const stat = await getStatistic();
+        stat.optional.day.audioChallenge.correctAnswersCount += audioStore.correctAnswers;
+        stat.optional.day.audioChallenge.incorrectAnswersCount += audioStore.incorrectAnswers;
+        stat.optional.day.audioChallenge.countNewWords += audioStore.newWords;
+        if (stat.optional.day.audioChallenge.correctAnswersSeriesLength < audioStore.maxCorrectAnswerStreak) {
+            stat.optional.day.audioChallenge.correctAnswersSeriesLength = audioStore.maxCorrectAnswerStreak;
+        }
+        updateStatistic(stat);
+        console.log(audioStore);
+    }
 }

@@ -31,3 +31,35 @@ export const NumberAttempt: INumberAttempt = {
     countFalseAnswer: 0,
     clickPlay: 0,
 };
+
+export const sprintStore: ISprintStore = {
+    newWords: 0,
+    correctAnswers: 0,
+    incorrectAnswers: 0,
+    correctAnswersStreak: 0,
+    maxCorrectAnswerStreak: 0,
+};
+
+interface ISprintStore {
+    newWords: number;
+    correctAnswers: number;
+    incorrectAnswers: number;
+    correctAnswersStreak: number;
+    maxCorrectAnswerStreak: number;
+}
+
+export const audioStore: IaudioStore = {
+    newWords: 0,
+    correctAnswers: 0,
+    incorrectAnswers: 0,
+    correctAnswersStreak: 0,
+    maxCorrectAnswerStreak: 0,
+};
+
+interface IaudioStore {
+    newWords: number;
+    correctAnswers: number;
+    incorrectAnswers: number;
+    correctAnswersStreak: number;
+    maxCorrectAnswerStreak: number;
+}

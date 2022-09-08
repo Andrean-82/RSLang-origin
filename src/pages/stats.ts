@@ -1,3 +1,4 @@
+import { getStatistic } from '../api/stat';
 import { addPageTitle } from '../components/createTitle';
 import Page from './page';
 
@@ -6,9 +7,30 @@ class Statistics extends Page {
         super('Statistics');
     }
 
-    openPage(): void {
+    async openPage(): Promise<void> {
+        const stat = await getStatistic();
         const pageName = this.name;
+        let xx = Number(
+            Math.ceil(
+                (stat.optional.day.sprint.correctAnswersCount * 100) /
+                    (stat.optional.day.sprint.incorrectAnswersCount + stat.optional.day.sprint.correctAnswersCount)
+            )
+        );
 
+        let yy = Number(
+            Math.ceil(
+                (stat.optional.day.audioChallenge.correctAnswersCount * 100) /
+                    (stat.optional.day.audioChallenge.incorrectAnswersCount + stat.optional.day.audioChallenge.correctAnswersCount)
+            )
+        );
+
+        if (isNaN(xx)) {
+            xx = 0;
+        }
+
+        if (isNaN(yy)) {
+            yy = 0;
+        }
         const pageHtml = `
         <div id="statistic-container">
         <div id="statistic-for-this-day">
@@ -17,11 +39,13 @@ class Statistics extends Page {
     <div id="words-statistic">
     <h3>Words statistic</h3>
         <div id="words-stat-container">
-            <p>new words:<span id="day-new-words">5</span></p>
+            <p>new words:<span id="day-new-words">${stat.optional.day.sprint.countNewWords}</span></p>
 
-            <p>correct answers:<span id="day-correct-answers">12</span></p>
+            <p>correct answers:<span id="day-correct-answers">
+            ${(xx + yy) / 2} %
+             </span></p>
 
-            <p>learned words:<span id="day-learned-words">2</span></p>
+            <p>learned words:<span id="day-learned-words">0</span></p>
         </div>
     </div>
 
@@ -33,20 +57,20 @@ class Statistics extends Page {
                 <h3>audio-challenge
                     <img src="../assets/png/audio.png" alt="audio-challenge" id="audio-challenge-img" width="58">
                 </h3>
-                <p>new words:<span id="audio-challenge-new-words">2</span></p>
+                <p>new words:<span id="audio-challenge-new-words">${stat.optional.day.audioChallenge.countNewWords}</span></p>
 
-                <p>correct answers:<span id="audio-challenge-correct-answers">5</span> </p>
+                <p>correct answers:<span id="audio-challenge-correct-answers">${yy}</span> </p>
 
-                <p>correct answers streak:<span id="audio-challenge-streak">1</span></p>
+                <p>correct answers streak:<span id="audio-challenge-streak">${stat.optional.day.audioChallenge.correctAnswersSeriesLength}</span></p>
             </div>
 
             <div id="sprint-stat-container">
                 <h3>
                     Sprint<img src="../assets/png/sprint.png" alt="sprint" id="sprint-img" width="58">
                 </h3>
-                <p>new words:<span id="sprint-new-words">3</span></p>
-                <p>correct answers:<span id="sprint-correct-answers">7</span> </p>
-                <p>correct answers streak:<span id="sprint-streak">1</span></p>
+                <p>new words:<span id="sprint-new-words">${stat.optional.day.sprint.countNewWords}</span></p>
+                <p>correct answers:<span id="sprint-correct-answers">${xx} %</span> </p>
+                <p>correct answers streak:<span id="sprint-streak">${stat.optional.day.sprint.correctAnswersSeriesLength}</span></p>
             </div> 
         </div>
     </div>
@@ -68,7 +92,7 @@ class Statistics extends Page {
         this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
-        this.renderStatSchedule([1, 2, 13, 4, 5, 6, 7, 8, 2, 5, 7, 10], [1, 2, 14, 5, 3, 6, 6, 6, 11, 10, 41]);
+        this.renderStatSchedule([stat.optional.day.sprint.countNewWords + stat.optional.day.audioChallenge.countNewWords], []);
     }
 
     renderStatSchedule(arrStat1: number[], arrStat2: number[]): void {
