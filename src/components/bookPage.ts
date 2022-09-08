@@ -65,13 +65,12 @@ class BookPage {
           </div>
 
           <div class="cardBody">
-            <div>${word.textExample}</div>
-            <span data-sounde="${word.audioExample}" class="material-icons">volume_down</span>
+            <div>${word.textExample}
+            <span data-sounde="${word.audioExample}" class="material-icons">volume_down</span></div>
             <div class="subSentence">${word.textExampleTranslate}</div>
           </div>
           <div class="cardBody">
-            <div>${word.textMeaning}</div>
-            <span data-soundx="${word.audioMeaning}" class="material-icons">volume_down</span>
+            <div>${word.textMeaning}            <span data-soundx="${word.audioMeaning}" class="material-icons">volume_down</span></div>
             <div class="subSentence">${word.textMeaningTranslate}</div>
           </div>
 

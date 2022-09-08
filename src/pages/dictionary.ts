@@ -5,6 +5,8 @@ import Page from './page';
 import { markWordAsDifficult, markWordAsLearned, unmarkWordAsDifficult, unmarkWordAsLearned } from '../api/userWordsApi';
 import { isUserLoggedIn } from '../components/loginUtils';
 import { gameLevel } from '../games/components-game/gameLevel';
+import { clickButtonSprint } from '../games/sprint/clickEventListenerSprint';
+import { clickButtonAudio } from '../games/audio/clickEventListenerAudio';
 
 class Dictionary extends Page {
     currentPage: number;
@@ -92,6 +94,8 @@ class Dictionary extends Page {
 
     </div>
   `;
+        this.appContainer.removeEventListener('click', clickButtonSprint);
+        this.appContainer.removeEventListener('click', clickButtonAudio);
         this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
     }
