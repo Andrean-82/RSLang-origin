@@ -6,7 +6,6 @@ import { gameRezultAudio } from './gameRezultAudio';
 NumberAttempt.countLifeScore;
 
 export const countLife = (trable: string) => {
-    console.log(`After : ${NumberAttempt.countLifeScore}`);
     NumberAttempt.countLifeScore -= 1;
     console.log(`Before : ${NumberAttempt.countLifeScore}`);
     if (NumberAttempt.countLifeScore >= 0) {
