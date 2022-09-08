@@ -12,7 +12,7 @@ class Team extends Page {
         const pageHtml = `
         <div class="teamContainer">
           <div class="teamCard">
-            <img src="../src/assets/main_pandas/8.png" class="photo"></img>
+            <img src="../assets/main_pandas/8.png" class="photo"></img>
             <div>
               <span><img src="../assets/svg/github.svg" class="git"></img></span>
               <span><a class="link-github" href="https://github.com/marumaru1">Maria</a></span>
@@ -26,7 +26,7 @@ class Team extends Page {
           <div class="teamCard team-lead">
             <img src="../assets/main_pandas/13.png" class="photo"></img>
             <div>
-              <span><img src="../src/assets/svg/github.svg" class="git"></img></span>
+              <span><img src="../assets/svg/github.svg" class="git"></img></span>
               <span><a class="link-github" href="https://github.com/Andrean-82">Anatoliy</a></span>
             </div>
             <div class="teamDescription">
@@ -46,7 +46,7 @@ class Team extends Page {
           </div>
     
         </div>`;
-
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
     }

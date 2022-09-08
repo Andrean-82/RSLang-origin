@@ -1,5 +1,20 @@
 import { addPageTitle } from '../components/createTitle';
+import { takeUserId } from '../games/audio/gameRezultAudio';
 import Page from './page';
+
+const getObject = () => {
+    const personID = takeUserId();
+    for (let i = 0; i < localStorage.length; i++) {
+        if (personID === localStorage.key(i)) {
+            const newObject = localStorage.getItem(`${localStorage.key(i)}`) as string;
+            const obj = JSON.parse(newObject);
+            console.log(obj);
+            return obj;
+        }
+    }
+};
+
+const result = getObject();
 
 class Statistics extends Page {
     constructor() {
@@ -35,7 +50,7 @@ class Statistics extends Page {
                 </h3>
                 <p>new words:<span id="audio-challenge-new-words">0</span></p>
 
-                <p>correct answers:<span id="audio-challenge-correct-answers">0</span> </p>
+                <p>correct answers:<span id="audio-challenge-correct-answers"> ~${result.procentResultfromSG}%</span> </p>
 
                 <p>correct answers streak:<span id="audio-challenge-streak">0</span></p>
             </div>
@@ -45,14 +60,14 @@ class Statistics extends Page {
                     Sprint<img src="../assets/png/sprint.png" alt="sprint" id="sprint-img" width="58">
                 </h3>
                 <p>new words:<span id="sprint-new-words">0</span></p>
-                <p>correct answers:<span id="sprint-correct-answers">0</span> </p>
+                <p>correct answers:<span id="sprint-correct-answers">0%</span></p>
                 <p>correct answers streak:<span id="sprint-streak">0</span></p>
             </div> 
         </div>
     </div>
 </div>
 </div>`;
-
+        this.appContainer.className = '';
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
     }

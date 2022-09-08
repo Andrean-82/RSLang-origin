@@ -1,13 +1,15 @@
-export let countAnswerScore = 0;
-export let countTrueAnswer = 0;
-export let countFalseAnswer = 0;
+import { NumberAttempt } from '../components-game/interface';
+
+NumberAttempt.countAnswerScore = 0;
+NumberAttempt.countTrueAnswer = 0;
+NumberAttempt.countFalseAnswer = 0;
 
 export const countAnswer = () => {
-    countAnswerScore += 10;
-    countTrueAnswer += 1;
+    NumberAttempt.countAnswerScore += 10;
+    NumberAttempt.countTrueAnswer += 1;
 };
 
 export const countAnswerFalse = () => {
-    countFalseAnswer += 1;
-    return countFalseAnswer;
+    NumberAttempt.countFalseAnswer += 1;
+    return NumberAttempt.countFalseAnswer;
 };

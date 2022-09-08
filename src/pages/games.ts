@@ -1,4 +1,6 @@
 import { addPageTitle } from '../components/createTitle';
+import { clickButtonAudio } from '../games/audio/clickEventListenerAudio';
+import { clickButtonSprint } from '../games/sprint/clickEventListenerSprint';
 import { clickButtonPlay } from '../games/sprint/index';
 import Page from './page';
 class Games extends Page {
@@ -28,6 +30,9 @@ class Games extends Page {
           </div>
         </div>
     `;
+        this.appContainer.className = '';
+        this.appContainer.removeEventListener('click', clickButtonSprint);
+        this.appContainer.removeEventListener('click', clickButtonAudio);
         this.appContainer.innerHTML = pageHtml;
         addPageTitle(pageName);
         clickButtonPlay();

@@ -1,16 +1,19 @@
+import { NumberAttempt } from '../components-game/interface';
 import { imagAnswer } from './gameCreateImg';
 import { gameRezultAudio } from './gameRezultAudio';
 
-export let countLifeScore = 5;
+// export let countLifeScore = 5;
+NumberAttempt.countLifeScore;
 
 export const countLife = (trable: string) => {
-    countLifeScore -= 1;
-    if (countLifeScore > 0) {
+    NumberAttempt.countLifeScore -= 1;
+    console.log(`Before : ${NumberAttempt.countLifeScore}`);
+    if (NumberAttempt.countLifeScore >= 0) {
         if (trable === 'false') {
             imagAnswer('false');
         }
     }
-    if (countLifeScore === 0) {
+    if (NumberAttempt.countLifeScore < 0) {
         gameRezultAudio();
     }
 };

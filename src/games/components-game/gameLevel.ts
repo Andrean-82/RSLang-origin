@@ -1,30 +1,40 @@
 import { createElement } from '../../components/createElement';
 import { clickButtonAudio } from '../audio/clickEventListenerAudio';
 import { clickButtonSprint } from '../sprint/clickEventListenerSprint';
+import { NumberAttempt, Stor } from './interface';
 
 export function gameLevel() {
+    Stor.divQuestionWord = [];
+    Stor.ansver = [];
+    Stor.arrayMod = [];
+    Stor.arrayColor = [];
+    NumberAttempt.count = 0;
+    NumberAttempt.countLifeScore = 5;
+    NumberAttempt.countAnswerScore = 0;
+    NumberAttempt.countTrueAnswer = 0;
+    NumberAttempt.countFalseAnswer = 0;
     const whatLevel = 6;
+
     // eslint-disable-next-line @typescript-eslint/no-var-requires
     const imgLevelOne = require('../sprint/pandaLevel.json');
     const app = <HTMLElement>document.getElementById('app');
     const container = <HTMLElement>document.querySelector('.content-container');
     const clickPlay = sessionStorage.getItem('clickPlay');
     app.innerHTML = '';
+    app.className = '';
     app.classList.toggle('close_btn');
-    if (clickPlay === '1') {
+    if (NumberAttempt.clickPlay === 1) {
         const forGameSprint = <HTMLElement>document.getElementById('app');
         forGameSprint.classList.toggle('sprint_challenge');
-        clickButtonSprint();
+        const sprintGameLest = <HTMLElement>document.querySelector('.sprint_challenge');
+        sprintGameLest.addEventListener('click', clickButtonSprint);
     }
-    if (clickPlay === '2') {
+    if (NumberAttempt.clickPlay === 2) {
         const forGameAudio = <HTMLElement>document.getElementById('app');
         forGameAudio.classList.toggle('audio_challenge');
-        clickButtonAudio();
+        const audioGameLest = <HTMLElement>document.querySelector('.audio_challenge');
+        audioGameLest.addEventListener('click', clickButtonAudio);
     }
-    const contBackground = createElement('div', container, ['container_background_image'], {
-        ['id']: 'container_background_image',
-    });
-    contBackground.append(app);
     container.style.display = 'flex';
     container.style.justifyContent = 'center';
     container.style.alignItems = 'center';
